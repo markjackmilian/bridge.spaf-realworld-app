@@ -75,6 +75,36 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bridge\bridge.console.js" />
+    <Content Include="bridge\bridge.ioc.js" />
+    <Content Include="bridge\bridge.ioc.meta.js" />
+    <Content Include="bridge\bridge.ioc.meta.min.js" />
+    <Content Include="bridge\bridge.ioc.min.js" />
+    <Content Include="bridge\bridge.js" />
+    <Content Include="bridge\Bridge.Messenger.js" />
+    <Content Include="bridge\Bridge.Messenger.meta.js" />
+    <Content Include="bridge\Bridge.Messenger.meta.min.js" />
+    <Content Include="bridge\Bridge.Messenger.min.js" />
+    <Content Include="bridge\bridge.meta.js" />
+    <Content Include="bridge\Bridge.Navigation.js" />
+    <Content Include="bridge\Bridge.Navigation.meta.js" />
+    <Content Include="bridge\Bridge.Navigation.meta.min.js" />
+    <Content Include="bridge\Bridge.Navigation.min.js" />
+    <Content Include="bridge\Bridge.Spaf.js" />
+    <Content Include="bridge\Bridge.Spaf.meta.js" />
+    <Content Include="bridge\index.html" />
+    <Content Include="bridge\index.min.html" />
+    <Content Include="bridge\jquery-2.2.4.js" />
+    <Content Include="bridge\jquery-2.2.4.min.js" />
+    <Content Include="bridge\realworld.spaf.js" />
+    <Content Include="bridge\realworld.spaf.meta.js" />
+    <Content Include="index.html" />
+    <Content Include="pages\article.html" />
+    <Content Include="pages\editArticle.html" />
+    <Content Include="pages\home.html" />
+    <Content Include="pages\login.html" />
+    <Content Include="pages\profile.html" />
+    <Content Include="pages\settings.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

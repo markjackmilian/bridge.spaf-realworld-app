@@ -42,7 +42,14 @@ namespace Bridge.Spaf
 
 
         public static string HomeId => "home";
-       
+        public static string LoginId => "login";
+        public static string ProfileId => "profile";
+        public static string SettingsId => "settings";
+        public static string EditArticleId => "editArticle";
+        public static string ArticleId => "article";
+
+        
+
         #endregion
 
         #region MESSAGES

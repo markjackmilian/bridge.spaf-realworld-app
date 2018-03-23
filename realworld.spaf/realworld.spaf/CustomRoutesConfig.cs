@@ -17,7 +17,41 @@ namespace Bridge.Spaf
                     Key = SpafApp.HomeId,
                     //PageController = () => SpafApp.Container.Resolve<HomeViewModel>()
                 },
-              
+                new PageDescriptor
+                {
+                    CanBeDirectLoad = ()=>true,
+                    HtmlLocation = ()=>"pages/login.html", // yout html location
+                    Key = SpafApp.LoginId,
+                    //PageController = () => SpafApp.Container.Resolve<HomeViewModel>()
+                },
+                new PageDescriptor
+                {
+                    CanBeDirectLoad = ()=>true,
+                    HtmlLocation = ()=>"pages/profile.html", // yout html location
+                    Key = SpafApp.ProfileId,
+                    //PageController = () => SpafApp.Container.Resolve<HomeViewModel>()
+                },
+                new PageDescriptor
+                {
+                    CanBeDirectLoad = ()=>true,
+                    HtmlLocation = ()=>"pages/settings.html", // yout html location
+                    Key = SpafApp.SettingsId,
+                    //PageController = () => SpafApp.Container.Resolve<HomeViewModel>()
+                },
+                new PageDescriptor
+                {
+                    CanBeDirectLoad = ()=>true,
+                    HtmlLocation = ()=>"pages/editArticle.html", // yout html location
+                    Key = SpafApp.EditArticleId,
+                    //PageController = () => SpafApp.Container.Resolve<HomeViewModel>()
+                },
+                new PageDescriptor
+                {
+                    CanBeDirectLoad = ()=>true,
+                    HtmlLocation = ()=>"pages/article.html", // yout html location
+                    Key = SpafApp.ArticleId,
+                    //PageController = () => SpafApp.Container.Resolve<HomeViewModel>()
+                },
             };
         }
 
