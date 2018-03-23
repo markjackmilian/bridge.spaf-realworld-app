@@ -105,6 +105,8 @@
     <Content Include="pages\login.html" />
     <Content Include="pages\profile.html" />
     <Content Include="pages\settings.html" />
+    <Content Include="Scripts\knockout-3.4.2.debug.js" />
+    <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
