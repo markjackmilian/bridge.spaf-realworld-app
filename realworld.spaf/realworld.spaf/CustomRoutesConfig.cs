@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Bridge.jQuery2;
 using Bridge.Navigation;
+using realworld.spaf.ViewModels;
 
 namespace Bridge.Spaf
 {
@@ -15,7 +16,7 @@ namespace Bridge.Spaf
                     CanBeDirectLoad = ()=>true,
                     HtmlLocation = ()=>"pages/home.html", // yout html location
                     Key = SpafApp.HomeId,
-                    //PageController = () => SpafApp.Container.Resolve<HomeViewModel>()
+                    PageController = () => SpafApp.Container.Resolve<HomeViewModel>()
                 },
                 new PageDescriptor
                 {

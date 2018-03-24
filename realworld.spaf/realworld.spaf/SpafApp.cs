@@ -6,6 +6,8 @@ using Bridge.Ioc;
 using Bridge.Messenger;
 using Bridge.Navigation;
 using Bridge.Spaf.Attributes;
+using realworld.spaf.Services;
+using realworld.spaf.Services.impl;
 
 namespace Bridge.Spaf
 {
@@ -34,6 +36,8 @@ namespace Bridge.Spaf
             RegisterAllViewModels();
 
             // register custom resource, services..
+            Container.RegisterSingleInstance<ISettings,Settings>();
+            Container.Register<IApiResources,ApiResources>();
 
         }
 
