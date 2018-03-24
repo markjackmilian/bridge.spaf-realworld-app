@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Bridge.Html5;
 using Bridge.jQuery2;
+using Newtonsoft.Json;
 using realworld.spaf.Models;
 
 namespace realworld.spaf.Services.impl
@@ -28,7 +29,7 @@ namespace realworld.spaf.Services.impl
                 , (Func<object, string, jqXHR, ArticleResponse>) ((resObj, success, jqXhr) =>
                 {
                     var json = JSON.Stringify(resObj);
-                    var obj = JSON.Parse<ArticleResponse>(json);
+                    var obj = JsonConvert.DeserializeObject<ArticleResponse>(json);
                     return obj;
                 }));
            

@@ -55,6 +55,9 @@
     <Reference Include="Bridge.Spaf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Bridge.Spaf.0.0.6\lib\net45\Bridge.Spaf.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=1.6.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Bridge.Newtonsoft.Json.1.6.0\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Retyped.Core, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Retyped.Core.1.4.6556\lib\net40\Retyped.Core.dll</HintPath>
     </Reference>
