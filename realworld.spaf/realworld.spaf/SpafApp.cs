@@ -37,7 +37,7 @@ namespace Bridge.Spaf
 
             // register custom resource, services..
             Container.RegisterSingleInstance<ISettings,Settings>();
-            Container.Register<IApiResources,ApiResources>();
+            Container.Register<IArticleResources,ArticleResources>();
 
         }
 

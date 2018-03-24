@@ -8,20 +8,22 @@ using realworld.spaf.Models;
 
 namespace realworld.spaf.Services.impl
 {
-    class ApiResources : IApiResources
+    class ArticleResources : IArticleResources
     {
         private readonly ISettings _settings;
 
-        public ApiResources(ISettings settings)
+        public ArticleResources(ISettings settings)
         {
             _settings = settings;
         }
 
-        public Task<ArticleResponse> GetArticles()
+        public Task<ArticleResponse> GetArticles(ArticleRequestBuilder builder)
         {
+            var url = $"{this._settings.ApiUri}/{builder.Build()}";
+            
             return Task.FromPromise<ArticleResponse>(jQuery.Ajax(new AjaxOptions
                 {
-                    Url = $"{this._settings.ApiUri}/articles",
+                    Url = url,
                     Type = "GET",
                     DataType = "json",
                     CrossDomain = true
@@ -34,5 +36,6 @@ namespace realworld.spaf.Services.impl
                 }));
            
         }
+      
     }
 }

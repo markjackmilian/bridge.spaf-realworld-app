@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 using Bridge.Spaf;
 using realworld.spaf.Models;
 using realworld.spaf.Services;
+using realworld.spaf.Services.impl;
 using static Retyped.knockout;
 
 namespace realworld.spaf.ViewModels
 {
     class HomeViewModel : LoadableViewModel
     {
-        private readonly IApiResources _resources;
+        private readonly IArticleResources _resources;
         protected override string ElementId() => SpafApp.HomeId;
 
         public KnockoutObservableArray<Article> Articles;
 
-        public HomeViewModel(IApiResources resources)
+        public HomeViewModel(IArticleResources resources)
         {
             _resources = resources;
             this.Articles = ko.observableArray.Self<Article>();
@@ -27,7 +28,7 @@ namespace realworld.spaf.ViewModels
         {
             base.OnLoad(parameters);
 
-            var articleResoResponse = await this._resources.GetArticles();
+            var articleResoResponse = await this._resources.GetArticles(ArticleRequestBuilder.Default());
             this.Articles.push(articleResoResponse.Articles);
         }
     }
