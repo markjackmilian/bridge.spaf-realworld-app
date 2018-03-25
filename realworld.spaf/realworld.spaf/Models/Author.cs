@@ -1,13 +1,20 @@
 ﻿using Bridge;
+using Newtonsoft.Json;
 
 namespace realworld.spaf.Models
 {
-    [Convention(Target = ConventionTarget.All, Notation = Notation.LowerCamelCase)]
     public class Author
     {
+        [JsonProperty("username")]
         public string Username { get; set; }
-        public object Bio { get; set; }
+
+        [JsonProperty("bio")]
+        public string Bio { get; set; }
+
+        [JsonProperty("image")]
         public string Image { get; set; }
+
+        [JsonProperty("following")]
         public bool Following { get; set; }
     }
 }

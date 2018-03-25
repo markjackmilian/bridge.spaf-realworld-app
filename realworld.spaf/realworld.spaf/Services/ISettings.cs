@@ -3,5 +3,6 @@
     public interface ISettings
     {
         string ApiUri { get; }
+        int ArticleInPage { get; }
     }
 }

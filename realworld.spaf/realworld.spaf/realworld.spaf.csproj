@@ -80,6 +80,8 @@
     <Compile Include="Models\ArticleResponse.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\TagsResponse.cs" />
+    <Compile Include="Models\Paginator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IArticleResources.cs" />
     <Compile Include="Services\impl\ArticleResources.cs" />

@@ -36,6 +36,24 @@ namespace realworld.spaf.Services.impl
                 }));
            
         }
-      
+
+        public Task<TagsResponse> GetTags()
+        {
+            var url = $"{this._settings.ApiUri}/tags";
+            
+            return Task.FromPromise<TagsResponse>(jQuery.Ajax(new AjaxOptions
+                {
+                    Url = url,
+                    Type = "GET",
+                    DataType = "json",
+                    CrossDomain = true
+                })
+                , (Func<object, string, jqXHR, TagsResponse>) ((resObj, success, jqXhr) =>
+                {
+                    var json = JSON.Stringify(resObj);
+                    var obj = JsonConvert.DeserializeObject<TagsResponse>(json);
+                    return obj;
+                }));
+        }
     }
 }

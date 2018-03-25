@@ -11,42 +11,47 @@
         <div class="row">
 
             <div class="col-md-9">
-                <div class="feed-toggle">
-                    <ul class="nav nav-pills outline-active">
+                <div class="feed-toggle" >
+                    <ul class="nav nav-pills outline-active" >
+
                         <li class="nav-item">
-                            <a class="nav-link active" href="javascript:void(0);">Global Feed</a>
+                            <a class="nav-link" href="javascript:void(0);" data-bind="click: ResetTabs, css: {active: ActiveTabIndex() == -1}">Global Feed</a>
                         </li>
+                        <!-- ko foreach: Tabs -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0);" data-bind="text:$data, css:{active:$index() == $parent.ActiveTabIndex()}, click:function(data) { $parent.ArticlesForTab(data)}"></a>
+                        </li>
+                        <!-- /ko -->
+
                     </ul>
+                    
                 </div>
 
 
                 <!-- ko foreach: Articles -->
                 <div class="article-preview">
                     <div class="article-meta">
-                        <a href="profile.html"><img data-bind="attr:{src: author.image}" /></a>
+                        <a href="profile.html"><img data-bind="attr:{src: Author.Image}" /></a>
                         <div class="info">
-                            <a href="" class="author" data-bind="text:author.username"></a>
-                            <span class="date">January 20th</span>
+                            <a href="" class="author" data-bind="text:Author.Username"></a>
+                            <span class="date" data-bind="text: Create"></span>
                         </div>
                         <button class="btn btn-outline-primary btn-sm pull-xs-right">
-                            <i class="ion-heart"></i> <!--ko text:favoritesCount--><!--/ko-->
+                            <i class="ion-heart"></i> <!--ko text:FavoritesCount--><!--/ko-->
                         </button>
                     </div>
                     <a href="" class="preview-link">
-                        <h1 data-bind="text:title"></h1>
-                        <p data-bind="text:description"></p>
+                        <h1 data-bind="text:Title"></h1>
+                        <p data-bind="text:Description"></p>
                         <span>Read more...</span>
                     </a>
                 </div>
                 <!-- /ko -->
 
 
-            <ul class="pagination">
-                <li class="page-item active">
-                    <a href="#" class="page-link">1</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">2</a>
+            <ul class="pagination" data-bind="foreach: Pages">
+                <li class="page-item" data-bind="css: { active: Active }">
+                    <a href="javascript:void(0);" class="page-link" data-bind="text: Page, click: function(data) { $parent.GoToPage(data)}"></a>
                 </li>
             </ul>
 
@@ -57,15 +62,8 @@
                 <div class="sidebar">
                     <p>Popular Tags</p>
 
-                    <div class="tag-list">
-                        <a href="" class="tag-pill tag-default">programming</a>
-                        <a href="" class="tag-pill tag-default">javascript</a>
-                        <a href="" class="tag-pill tag-default">emberjs</a>
-                        <a href="" class="tag-pill tag-default">angularjs</a>
-                        <a href="" class="tag-pill tag-default">react</a>
-                        <a href="" class="tag-pill tag-default">mean</a>
-                        <a href="" class="tag-pill tag-default">node</a>
-                        <a href="" class="tag-pill tag-default">rails</a>
+                    <div class="tag-list" data-bind="foreach : Tags">
+                        <a href="javascript:void(0);" class="tag-pill tag-default" data-bind="text: $data, click: function(data) { $parent.FilterByTag(data)}"></a>
                     </div>
                 </div>
             </div>
