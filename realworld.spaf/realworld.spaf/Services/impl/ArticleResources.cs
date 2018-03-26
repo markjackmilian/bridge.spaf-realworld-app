@@ -8,7 +8,7 @@ using realworld.spaf.Models;
 
 namespace realworld.spaf.Services.impl
 {
-    class ArticleResources : IArticleResources
+    class ArticleResources : ResourceBase, IArticleResources
     {
         private readonly ISettings _settings;
 
@@ -19,41 +19,26 @@ namespace realworld.spaf.Services.impl
 
         public Task<ArticleResponse> GetArticles(ArticleRequestBuilder builder)
         {
-            var url = $"{this._settings.ApiUri}/{builder.Build()}";
-            
-            return Task.FromPromise<ArticleResponse>(jQuery.Ajax(new AjaxOptions
-                {
-                    Url = url,
-                    Type = "GET",
-                    DataType = "json",
-                    CrossDomain = true
-                })
-                , (Func<object, string, jqXHR, ArticleResponse>) ((resObj, success, jqXhr) =>
-                {
-                    var json = JSON.Stringify(resObj);
-                    var obj = JsonConvert.DeserializeObject<ArticleResponse>(json);
-                    return obj;
-                }));
-           
+            var options = new AjaxOptions
+            {
+                Url = $"{this._settings.ApiUri}/{builder.Build()}",
+                Type = "GET",
+                DataType = "json",
+            };
+
+            return base.MakeCall<ArticleResponse>(options);
         }
 
         public Task<TagsResponse> GetTags()
         {
-            var url = $"{this._settings.ApiUri}/tags";
+            var options = new AjaxOptions
+            {
+                Url = $"{this._settings.ApiUri}/tags",
+                Type = "GET",
+                DataType = "json"
+            };
             
-            return Task.FromPromise<TagsResponse>(jQuery.Ajax(new AjaxOptions
-                {
-                    Url = url,
-                    Type = "GET",
-                    DataType = "json",
-                    CrossDomain = true
-                })
-                , (Func<object, string, jqXHR, TagsResponse>) ((resObj, success, jqXhr) =>
-                {
-                    var json = JSON.Stringify(resObj);
-                    var obj = JsonConvert.DeserializeObject<TagsResponse>(json);
-                    return obj;
-                }));
+            return base.MakeCall<TagsResponse>(options);
         }
     }
 }
