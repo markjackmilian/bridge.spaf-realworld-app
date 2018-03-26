@@ -39,6 +39,8 @@ namespace Bridge.Spaf
             Container.RegisterSingleInstance<ISettings,Settings>();
             Container.Register<IArticleResources,ArticleResources>();
             Container.Register<IUserResources,UserResources>();
+            Container.RegisterSingleInstance<IUserService,UserService>();
+
 
         }
 
@@ -48,6 +50,7 @@ namespace Bridge.Spaf
 
         public static string HomeId => "home";
         public static string LoginId => "login";
+        public static string RegisterId => "register";
         public static string ProfileId => "profile";
         public static string SettingsId => "settings";
         public static string EditArticleId => "editArticle";

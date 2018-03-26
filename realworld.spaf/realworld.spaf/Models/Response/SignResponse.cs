@@ -2,7 +2,7 @@
 
 namespace realworld.spaf.Models.Response
 {
-    public class Loginresponse 
+    public class SignResponse 
     {
         [JsonProperty("user")]
         public User User { get; set; }

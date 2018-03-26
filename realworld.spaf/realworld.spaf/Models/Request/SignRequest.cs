@@ -2,7 +2,7 @@
 
 namespace realworld.spaf.Models.Request
 {
-    public class Loginrequest
+    public class SignRequest
     {
         [JsonProperty("user")]
         public UserRequest User { get; set; }

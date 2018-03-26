@@ -6,28 +6,30 @@ using Bridge.Spaf;
 using realworld.spaf.Classes;
 using realworld.spaf.Models.Request;
 using realworld.spaf.Services;
-using static Retyped.knockout;
+using Retyped;
 
 namespace realworld.spaf.ViewModels
 {
-    class LoginViewModel : LoadableViewModel
+    class RegisterViewModel : LoadableViewModel
     {
         private readonly INavigator _navigator;
         private readonly IUserService _userService;
-        protected override string ElementId() => SpafApp.LoginId;
+        protected override string ElementId() => SpafApp.RegisterId;
 
-        public KnockoutObservable<string> Email { get; set; }
-        public KnockoutObservable<string> Password { get; set; }
-        public KnockoutObservableArray<string> Errors { get; set; }
+        public knockout.KnockoutObservable<string> Username { get; set; }
+        public knockout.KnockoutObservable<string> Email { get; set; }
+        public knockout.KnockoutObservable<string> Password { get; set; }
+        public knockout.KnockoutObservableArray<string> Errors { get; set; }
 
-        public LoginViewModel(INavigator navigator, IUserService userService)
+        public RegisterViewModel(INavigator navigator, IUserService userService)
         {
             _navigator = navigator;
             _userService = userService;
 
-            this.Email = ko.observable.Self<string>();
-            this.Password = ko.observable.Self<string>();
-            this.Errors = ko.observableArray.Self<string>();
+            this.Username = knockout.ko.observable.Self<string>();
+            this.Email = knockout.ko.observable.Self<string>();
+            this.Password = knockout.ko.observable.Self<string>();
+            this.Errors = knockout.ko.observableArray.Self<string>();
         }
 
         public override void OnLoad(Dictionary<string, object> parameters)
@@ -36,12 +38,12 @@ namespace realworld.spaf.ViewModels
             this._navigator.EnableSpafAnchors();
         }
 
-        public async Task Login()
+        public async Task Register()
         {
             try
             {
                 this.Errors.removeAll();
-                await this._userService.Login(this.Email.Self(), this.Password.Self());
+                await this._userService.Register(this.Username.Self(), this.Email.Self(), this.Password.Self());
             }
             
             catch (PromiseException e)

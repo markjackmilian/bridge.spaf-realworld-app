@@ -28,6 +28,13 @@ namespace Bridge.Spaf
                 new PageDescriptor
                 {
                     CanBeDirectLoad = ()=>true,
+                    HtmlLocation = ()=>"pages/register.html", // yout html location
+                    Key = SpafApp.RegisterId,
+                    PageController = () => SpafApp.Container.Resolve<RegisterViewModel>()
+                },
+                new PageDescriptor
+                {
+                    CanBeDirectLoad = ()=>true,
                     HtmlLocation = ()=>"pages/profile.html", // yout html location
                     Key = SpafApp.ProfileId,
                     //PageController = () => SpafApp.Container.Resolve<HomeViewModel>()

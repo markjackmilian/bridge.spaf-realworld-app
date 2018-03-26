@@ -15,17 +15,32 @@ namespace realworld.spaf.Services.impl
             _settings = settings;
         }
         
-        public Task<Loginresponse> Login(Loginrequest loginRequest)
+        public Task<SignResponse> Login(SignRequest loginRequest)
         {
             var options = new AjaxOptions
             {
                 Url = $"{this._settings.ApiUri}/users/login",
                 Type = "POST",
                 DataType = "json",
+                ContentType = "application/json",
                 Data = JsonConvert.SerializeObject(loginRequest)
             };
 
-            return base.MakeCall<Loginresponse>(options);
+            return base.MakeCall<SignResponse>(options);
+        }
+
+        public Task<SignResponse> Register(SignRequest loginRequest)
+        {
+            var options = new AjaxOptions
+            {
+                Url = $"{this._settings.ApiUri}/users",
+                Type = "POST",
+                DataType = "json",
+                ContentType = "application/json",
+                Data = JsonConvert.SerializeObject(loginRequest)
+            };
+
+            return base.MakeCall<SignResponse>(options);
         }
     }
 }
