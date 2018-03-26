@@ -1,9 +1,7 @@
-﻿using Bridge;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace realworld.spaf.Models
+namespace realworld.spaf.Models.Response
 {
-    [Convention(Target = ConventionTarget.All, Notation = Notation.LowerCamelCase)]
     public class ArticleResponse
     {
         [JsonProperty("articles")]
@@ -12,4 +10,5 @@ namespace realworld.spaf.Models
         [JsonProperty("articlesCount")]
         public long ArticlesCount { get; set; }
     }
+    
 }

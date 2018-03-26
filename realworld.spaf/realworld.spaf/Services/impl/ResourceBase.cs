@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using Bridge.Html5;
 using Bridge.jQuery2;
 using Newtonsoft.Json;
+using realworld.spaf.Classes;
 using realworld.spaf.Models;
+using realworld.spaf.Models.Response;
 
 namespace realworld.spaf.Services.impl
 {
@@ -24,6 +26,7 @@ namespace realworld.spaf.Services.impl
                     var obj = JsonConvert.DeserializeObject<T>(json);
                     return obj;
                 }));
+           
         }
     }
 }
