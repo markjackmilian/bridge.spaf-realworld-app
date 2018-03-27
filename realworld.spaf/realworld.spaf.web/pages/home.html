@@ -37,16 +37,16 @@
                 <!-- ko foreach: Articles -->
                 <div class="article-preview">
                     <div class="article-meta">
-                        <a href="profile.html"><img data-bind="attr:{src: Author.Image}" /></a>
+                        <a href="javascript:void (0);" data-bind="click: function(data) { $parent.GoToUser(data)}"><img data-bind="attr:{src: Author.Image}" /></a>
                         <div class="info">
-                            <a href="" class="author" data-bind="text:Author.Username"></a>
+                            <a href="javascript:void(0);" class="author" data-bind="text:Author.Username, click: function(data) { $parent.GoToUser(data)}"></a>
                             <span class="date" data-bind="text: Create"></span>
                         </div>
-                        <button class="btn btn-outline-primary btn-sm pull-xs-right">
+                        <button class="btn btn-outline-primary btn-sm pull-xs-right" data-bind="click: function(data) { $parent.AddToFavourite(data)}">
                             <i class="ion-heart"></i> <!--ko text:FavoritesCount--><!--/ko-->
                         </button>
                     </div>
-                    <a href="" class="preview-link">
+                    <a href="javascript:void(0);" class="preview-link" data-bind="click: function(data) { $parent.GoToArticle(data)}">
                         <h1 data-bind="text:Title"></h1>
                         <p data-bind="text:Description"></p>
                         <span>Read more...</span>

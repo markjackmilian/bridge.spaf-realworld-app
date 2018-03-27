@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bridge.Html5;
 using Bridge.Spaf;
 using realworld.spaf.Classes;
 using realworld.spaf.Models;
@@ -64,6 +65,36 @@ namespace realworld.spaf.ViewModels
         }
 
         #region KNOCKOUT METHODS
+
+        /// <summary>
+        /// Navigate to user detail
+        /// </summary>
+        /// <param name="article"></param>
+        public void GoToUser(Article article)
+        {
+            Global.Alert($"Go to user {article.Author.Username}");
+        }
+        
+        /// <summary>
+        /// Navigate to article detail
+        /// </summary>
+        /// <param name="article"></param>
+        public void GoToArticle(Article article)
+        {
+            Global.Alert($"Go to user {article.Slug}");
+        }
+
+        /// <summary>
+        /// Add passed article to fav
+        /// Only for auth users
+        /// </summary>
+        /// <param name="article"></param>
+        /// <returns></returns>
+        public async Task AddToFavourite(Article article)
+        {
+            if (!this.IsLogged) return;
+            
+        }
 
         /// <summary>
         /// Go to user feed
