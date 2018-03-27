@@ -82,6 +82,7 @@
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Request\SettingsRequestResponse.cs" />
     <Compile Include="Models\Request\UserRequest.cs" />
     <Compile Include="Models\Request\SignRequest.cs" />
     <Compile Include="Models\Response\ArticleResponse.cs" />
