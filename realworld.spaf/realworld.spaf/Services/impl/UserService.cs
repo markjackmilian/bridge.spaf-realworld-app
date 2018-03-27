@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Bridge;
+using Bridge.Messenger;
+using Bridge.Spaf;
 using realworld.spaf.Models;
 using realworld.spaf.Models.Request;
 
@@ -8,10 +10,12 @@ namespace realworld.spaf.Services.impl
     class UserService : IUserService
     {
         private readonly IUserResources _userResources;
+        private readonly IMessenger _messenger;
 
-        public UserService(IUserResources userResources)
+        public UserService(IUserResources userResources, IMessenger messenger)
         {
             _userResources = userResources;
+            _messenger = messenger;
         }
 
         public User LoggedUser { get; private set; }
@@ -29,6 +33,7 @@ namespace realworld.spaf.Services.impl
             });
 
             this.LoggedUser = loginResponse.User;
+            this._messenger.Send(this,SpafApp.Messages.LoginDone);
         }
 
         public async Task Register(string username, string mail, string password)
@@ -44,6 +49,7 @@ namespace realworld.spaf.Services.impl
             });
             
             this.LoggedUser = loginResponse.User;
+            this._messenger.Send(this,SpafApp.Messages.LoginDone);
         }
     }
 }

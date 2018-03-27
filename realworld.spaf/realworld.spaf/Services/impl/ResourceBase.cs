@@ -17,7 +17,7 @@ namespace realworld.spaf.Services.impl
         /// <param name="options"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        protected Task<T> MakeCall<T>(AjaxOptions options) 
+        protected virtual Task<T> MakeCall<T>(AjaxOptions options) 
         {
             return Task.FromPromise<T>(jQuery.Ajax(options)
                 , (Func<object, string, jqXHR, T>) ((resObj, success, jqXhr) =>

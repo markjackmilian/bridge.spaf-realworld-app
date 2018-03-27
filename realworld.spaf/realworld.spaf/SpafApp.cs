@@ -8,6 +8,7 @@ using Bridge.Navigation;
 using Bridge.Spaf.Attributes;
 using realworld.spaf.Services;
 using realworld.spaf.Services.impl;
+using realworld.spaf.ViewModels;
 
 namespace Bridge.Spaf
 {
@@ -20,7 +21,8 @@ namespace Bridge.Spaf
             Container = new BridgeIoc();
             ContainerConfig(); // config container
             Container.Resolve<INavigator>().InitNavigation(); // init navigation
-
+            var mainVm = Container.Resolve<MainViewModel>();
+            mainVm.Start();
         }
 
         private static void ContainerConfig()
@@ -36,9 +38,11 @@ namespace Bridge.Spaf
             RegisterAllViewModels();
 
             // register custom resource, services..
-            Container.RegisterSingleInstance<ISettings,Settings>();
             Container.Register<IArticleResources,ArticleResources>();
             Container.Register<IUserResources,UserResources>();
+            Container.Register<IFeedResources,FeedResources>();
+            
+            Container.RegisterSingleInstance<ISettings,Settings>();
             Container.RegisterSingleInstance<IUserService,UserService>();
 
 

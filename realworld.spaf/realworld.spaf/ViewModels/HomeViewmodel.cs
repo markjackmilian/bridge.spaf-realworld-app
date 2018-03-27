@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bridge.Spaf;
+using realworld.spaf.Classes;
 using realworld.spaf.Models;
 using realworld.spaf.Models.Response;
 using realworld.spaf.Services;
@@ -21,6 +22,8 @@ namespace realworld.spaf.ViewModels
         
         private readonly IArticleResources _resources;
         private readonly ISettings _settings;
+        private readonly IUserService _userService;
+        private readonly IFeedResources _feedResources;
 
         #region KNOCKOUTJS
         
@@ -28,36 +31,54 @@ namespace realworld.spaf.ViewModels
         public KnockoutObservableArray<Paginator> Pages; // paginator helper
         public KnockoutObservableArray<string> Tags; // tags
         public KnockoutObservable<int> ActiveTabIndex; // tab active index
-        public KnockoutObservableArray<string> Tabs; 
-
+        public KnockoutObservableArray<string> Tabs;
+        public bool IsLogged => this._userService.IsLogged;
         #endregion
       
 
-        public HomeViewModel(IArticleResources resources, ISettings settings)
+        public HomeViewModel(IArticleResources resources, ISettings settings, 
+            IUserService userService, IFeedResources feedResources)
         {
             _resources = resources;
             _settings = settings;
+            _userService = userService;
+            _feedResources = feedResources;
             this.Articles = ko.observableArray.Self<Article>();
             this.Pages = ko.observableArray.Self<Paginator>();
             this.Tags = ko.observableArray.Self<string>();
             this.Tabs = ko.observableArray.Self<string>();
-            this.ActiveTabIndex = ko.observable.Self<int>(-1);
+            this.ActiveTabIndex = ko.observable.Self<int>(this.IsLogged ? -2 : -1);
         }
 
         public override async void OnLoad(Dictionary<string, object> parameters)
         {
             base.OnLoad(parameters); // always call base (where applybinding)
+
+            var articlesTask = this._userService.IsLogged
+                ? this.LoadFeed(FeedRequestBuilder.Default().WithLimit(this._settings.ArticleInPage))
+                : this.LoadArticles(ArticleRequestBuilder.Default().WithLimit(this._settings.ArticleInPage));
             
-            var loadArticle =
-                this.LoadArticles(ArticleRequestBuilder.Default().WithLimit(this._settings.ArticleInPage));
-            await Task.WhenAll(loadArticle,this.LoadTags());
+            await Task.WhenAll(articlesTask,this.LoadTags());
             
-            this.RefreshPaginator(loadArticle.Result);
+            this.RefreshPaginator(articlesTask.Result);
         }
 
         #region KNOCKOUT METHODS
+
+        /// <summary>
+        /// Go to user feed
+        /// </summary>
+        /// <returns></returns>
+        public async Task ResetTabsForFeed()
+        {
+            this.ActiveTabIndex.Self(-2);
+            this.Tabs.removeAll();
+            this._tagFilter = null;
+            var articleResponse = await this.LoadFeed(FeedRequestBuilder.Default().WithLimit(this._settings.ArticleInPage));
+            this.RefreshPaginator(articleResponse);
+        }
         
-          /// <summary>
+        /// <summary>
         /// Reset Tab
         /// </summary>
         /// <returns></returns>
@@ -140,6 +161,19 @@ namespace realworld.spaf.ViewModels
             this.Articles.push(articleResoResponse.Articles);
             return articleResoResponse;
         }
+        
+        /// <summary>
+        /// Load feed
+        /// Clear list and reload
+        /// </summary>
+        /// <returns></returns>
+        private async Task<ArticleResponse> LoadFeed(FeedRequestBuilder request)
+        {
+            var feedResponse = await this._feedResources.GetFeed(request);
+            this.Articles.removeAll();
+            this.Articles.push(feedResponse.Articles);
+            return feedResponse;
+        }
 
         /// <summary>
         /// Reload tags
@@ -158,6 +192,10 @@ namespace realworld.spaf.ViewModels
         /// <param name="articleResoResponse"></param>
         private void RefreshPaginator(ArticleResponse articleResoResponse)
         {
+            this.Pages.removeAll();
+
+            if (!articleResoResponse.Articles.Any()) return; // no articles
+            
             var pagesCount = (int) (articleResoResponse.ArticlesCount / articleResoResponse.Articles.Length);
             var range = Enumerable.Range(1, pagesCount);
             var pages = range.Select(s => new Paginator
@@ -165,7 +203,6 @@ namespace realworld.spaf.ViewModels
                 Page = s
             }).ToArray();
             pages[0].Active.Self(true);
-            this.Pages.removeAll();
             this.Pages.push(pages);
         }
 

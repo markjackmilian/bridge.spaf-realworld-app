@@ -14,6 +14,7 @@ namespace realworld.spaf.Services
         /// <param name="builder"></param>
         /// <returns></returns>
         Task<ArticleResponse> GetArticles(ArticleRequestBuilder builder);
+        
 
         /// <summary>
         /// Get popular tags

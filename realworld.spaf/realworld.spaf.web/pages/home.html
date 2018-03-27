@@ -14,6 +14,9 @@
                 <div class="feed-toggle" >
                     <ul class="nav nav-pills outline-active" >
 
+                        <li class="nav-item" data-bind="if: IsLogged">
+                            <a class="nav-link" href="javascript:void(0);" data-bind="click: ResetTabsForFeed, css: {active: ActiveTabIndex() == -2}">Your Feed</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0);" data-bind="click: ResetTabs, css: {active: ActiveTabIndex() == -1}">Global Feed</a>
                         </li>
@@ -27,6 +30,9 @@
                     
                 </div>
 
+                <!-- ko if:Articles().length == 0 -->
+                <div class="article-preview">Nothing to see here..</div>
+                <!-- /ko -->
 
                 <!-- ko foreach: Articles -->
                 <div class="article-preview">

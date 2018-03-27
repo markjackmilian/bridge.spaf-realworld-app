@@ -42,6 +42,7 @@ namespace realworld.spaf.ViewModels
             {
                 this.Errors.removeAll();
                 await this._userService.Login(this.Email.Self(), this.Password.Self());
+                this._navigator.Navigate(SpafApp.HomeId);
             }
             
             catch (PromiseException e)
