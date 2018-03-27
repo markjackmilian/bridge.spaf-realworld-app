@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using realworld.spaf.Models;
+using realworld.spaf.Models.Request;
 
 namespace realworld.spaf.Services
 {
@@ -24,5 +25,6 @@ namespace realworld.spaf.Services
         /// <param name="password"></param>
         /// <returns></returns>
         Task Register(string username, string mail, string password);
+        Task UpdateSettings(string username, string newPassword, string biography, string email, string imageUri);
     }
 }

@@ -51,5 +51,19 @@ namespace realworld.spaf.Services.impl
             this.LoggedUser = loginResponse.User;
             this._messenger.Send(this,SpafApp.Messages.LoginDone);
         }
+
+        public async Task UpdateSettings(string username, string newPassword, string biography, string email, string imageUri)
+        {
+            var settingsRequest = new SettingsRequestResponse
+            {
+                Username = username,
+                NewPassword = newPassword,
+                Biography = biography,
+                Email = email,
+                ImageUri = imageUri
+            };
+
+            await this._userResources.UpdateSettings(settingsRequest);
+        }
     }
 }
