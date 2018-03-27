@@ -19,7 +19,7 @@ namespace realworld.spaf.Services.impl
         /// <param name="options"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        protected override Task<T> MakeCall<T>(AjaxOptions options) 
+        protected Task<T> MakeAuthorizedCall<T>(AjaxOptions options) 
         {
             if(!this.UserService.IsLogged)
                 throw new Exception("You must be logged to use this resource");

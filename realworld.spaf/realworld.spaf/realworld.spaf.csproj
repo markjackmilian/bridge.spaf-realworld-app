@@ -90,13 +90,16 @@
     <Compile Include="Models\Response\SignResponse.cs" />
     <Compile Include="Models\Paginator.cs" />
     <Compile Include="Models\Response\SingleArticleResponse.cs" />
+    <Compile Include="Models\Response\SingleCommentResponse.cs" />
     <Compile Include="Models\Response\TagsResponse.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IArticleResources.cs" />
+    <Compile Include="Services\ICommentResources.cs" />
     <Compile Include="Services\IFeedResources.cs" />
     <Compile Include="Services\impl\ArticleResources.cs" />
     <Compile Include="Services\impl\AuthorizedResourceBase.cs" />
+    <Compile Include="Services\impl\CommentResources.cs" />
     <Compile Include="Services\impl\FeedResources.cs" />
     <Compile Include="Services\impl\ResourceBase.cs" />
     <Compile Include="Services\impl\UserResources.cs" />

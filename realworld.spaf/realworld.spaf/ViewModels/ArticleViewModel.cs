@@ -17,6 +17,7 @@ namespace realworld.spaf.ViewModels
         private readonly IArticleResources _articleResources;
         private readonly IUserService _userService;
         private readonly INavigator _navigator;
+        private readonly ICommentResources _commentResources;
         protected override string ElementId() => SpafApp.ArticleId;
 
         public Article Article { get; set; }
@@ -24,11 +25,13 @@ namespace realworld.spaf.ViewModels
         public bool IsLogged => this._userService.IsLogged;
         public User LoggedUser => this._userService.LoggedUser;
 
-        public ArticleViewModel(IArticleResources articleResources, IUserService userService, INavigator navigator)
+        public ArticleViewModel(IArticleResources articleResources, IUserService userService, 
+            INavigator navigator, ICommentResources commentResources)
         {
             _articleResources = articleResources;
             _userService = userService;
             _navigator = navigator;
+            _commentResources = commentResources;
 
             this.Article = new Article();
             this.Comments = ko.observableArray.Self<Comment>();
@@ -66,7 +69,7 @@ namespace realworld.spaf.ViewModels
         /// <returns></returns>
         private async Task LoadComments(string slug)
         {
-            var comment = await this._articleResources.GetArticleComments(slug);
+            var comment = await this._commentResources.GetArticleComments(slug);
             this.Comments.push(comment.Comments);
         }
 

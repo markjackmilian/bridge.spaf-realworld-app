@@ -28,12 +28,6 @@ namespace realworld.spaf.Services
         /// <param name="slug"></param>
         /// <returns></returns>
         Task<SingleArticleResponse> GetArticle(string slug);
-        
-        /// <summary>
-        /// Get comments for article
-        /// </summary>
-        /// <param name="slug"></param>
-        /// <returns></returns>
-        Task<CommentsResponse> GetArticleComments(string slug);
+       
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Bridge.Html5;
 using Bridge.jQuery2;
 using Newtonsoft.Json;
 using realworld.spaf.Models;
@@ -53,18 +52,7 @@ namespace realworld.spaf.Services.impl
             
             return base.MakeCall<SingleArticleResponse>(options);
         }
-
-        public Task<CommentsResponse> GetArticleComments(string slug)
-        {
-            var options = new AjaxOptions
-            {
-                Url = $"{this._settings.ApiUri}/articles/{slug}/comments",
-                Type = "GET",
-                DataType = "json"
-            };
-            
-            return base.MakeCall<CommentsResponse>(options);
-        }
+       
     }
     
 }
