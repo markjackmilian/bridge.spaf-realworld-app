@@ -49,8 +49,8 @@
     <Reference Include="Bridge.Messenger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Bridge.Messenger.1.0.0\lib\net45\Bridge.Messenger.dll</HintPath>
     </Reference>
-    <Reference Include="Bridge.Navigation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bridge.Navigation.1.1.0\lib\net45\Bridge.Navigation.dll</HintPath>
+    <Reference Include="Bridge.Navigation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Bridge.Navigation.1.1.1-alpha1\lib\net45\Bridge.Navigation.dll</HintPath>
     </Reference>
     <Reference Include="Bridge.Spaf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Bridge.Spaf.0.0.6\lib\net45\Bridge.Spaf.dll</HintPath>

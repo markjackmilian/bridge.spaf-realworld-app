@@ -32,11 +32,6 @@ namespace realworld.spaf.ViewModels
             this.Errors = knockout.ko.observableArray.Self<string>();
         }
 
-        public override void OnLoad(Dictionary<string, object> parameters)
-        {
-            base.OnLoad(parameters);
-            this._navigator.EnableSpafAnchors();
-        }
 
         public async Task Register()
         {
