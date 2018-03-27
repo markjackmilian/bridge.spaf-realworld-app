@@ -18,6 +18,7 @@ namespace realworld.spaf.ViewModels
         private readonly IUserService _userService;
         private readonly INavigator _navigator;
         private readonly ICommentResources _commentResources;
+        private readonly IProfileResources _profileResources;
         protected override string ElementId() => SpafApp.ArticleId;
 
         public Article Article { get; set; }
@@ -26,12 +27,13 @@ namespace realworld.spaf.ViewModels
         public User LoggedUser => this._userService.LoggedUser;
 
         public ArticleViewModel(IArticleResources articleResources, IUserService userService, 
-            INavigator navigator, ICommentResources commentResources)
+            INavigator navigator, ICommentResources commentResources, IProfileResources profileResources)
         {
             _articleResources = articleResources;
             _userService = userService;
             _navigator = navigator;
             _commentResources = commentResources;
+            _profileResources = profileResources;
 
             this.Article = new Article();
             this.Comments = ko.observableArray.Self<Comment>();
@@ -53,6 +55,17 @@ namespace realworld.spaf.ViewModels
             this._navigator.EnableSpafAnchors(); // todo check why not auto enabled
         }
 
+
+        /// <summary>
+        /// Follow Article Author
+        /// </summary>
+        /// <returns></returns>
+        public async Task FollowAuthor()
+        {
+            await this._profileResources.Follow(this.Article.Author.Username);
+        }
+        
+        
         /// <summary>
         /// Manual revaluate binding
         /// </summary>

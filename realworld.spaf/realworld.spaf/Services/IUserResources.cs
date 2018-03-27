@@ -20,5 +20,6 @@ namespace realworld.spaf.Services
         /// <param name="loginRequest"></param>
         /// <returns></returns>
         Task<SignResponse> Register(SignRequest loginRequest);
+
     }
 }

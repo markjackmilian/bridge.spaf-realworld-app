@@ -10,7 +10,7 @@ namespace realworld.spaf.Services.impl
     {
         private readonly ISettings _settings;
 
-        public UserResources(ISettings settings)
+        public UserResources(ISettings settings) 
         {
             _settings = settings;
         }
@@ -42,5 +42,7 @@ namespace realworld.spaf.Services.impl
 
             return base.MakeCall<SignResponse>(options);
         }
+
+        
     }
 }
