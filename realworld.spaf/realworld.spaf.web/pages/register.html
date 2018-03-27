@@ -1,0 +1,33 @@
+<div class="auth-page" id="register">
+    <div class="container page">
+        <div class="row">
+
+            <div class="col-md-6 offset-md-3 col-xs-12">
+                <h1 class="text-xs-center">Sign in</h1>
+                <p class="text-xs-center">
+                    <a href="spaf:login">Have an account?</a>
+                </p>
+
+                <ul class="error-messages" data-bind="visible: Errors().length > 0, foreach: Errors">
+                    <li data-bind="text:$data"></li>
+                </ul>
+
+                <div>
+                    <fieldset class="form-group">
+                        <input class="form-control form-control-lg" type="text" placeholder="Your Name" data-bind="textInput:Username">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input class="form-control form-control-lg" type="text" placeholder="Email"  data-bind="textInput:Email" >
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input class="form-control form-control-lg" type="password" placeholder="Password" data-bind="textInput:Password">
+                    </fieldset>
+                    <button class="btn btn-lg btn-primary pull-xs-right" data-bind="click:Register">
+                        Sign up
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

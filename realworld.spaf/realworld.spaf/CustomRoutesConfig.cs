@@ -23,7 +23,14 @@ namespace Bridge.Spaf
                     CanBeDirectLoad = ()=>true,
                     HtmlLocation = ()=>"pages/login.html", // yout html location
                     Key = SpafApp.LoginId,
-                    //PageController = () => SpafApp.Container.Resolve<HomeViewModel>()
+                    PageController = () => SpafApp.Container.Resolve<LoginViewModel>()
+                },
+                new PageDescriptor
+                {
+                    CanBeDirectLoad = ()=>true,
+                    HtmlLocation = ()=>"pages/register.html", // yout html location
+                    Key = SpafApp.RegisterId,
+                    PageController = () => SpafApp.Container.Resolve<RegisterViewModel>()
                 },
                 new PageDescriptor
                 {
@@ -51,7 +58,7 @@ namespace Bridge.Spaf
                     CanBeDirectLoad = ()=>true,
                     HtmlLocation = ()=>"pages/article.html", // yout html location
                     Key = SpafApp.ArticleId,
-                    //PageController = () => SpafApp.Container.Resolve<HomeViewModel>()
+                    PageController = () => SpafApp.Container.Resolve<ArticleViewModel>()
                 },
             };
         }
