@@ -27,7 +27,7 @@ namespace realworld.spaf.Services.impl
             return base.MakeCall<CommentsResponse>(options);
         }
 
-        public Task AddComment(string slug, string comment)
+        public Task<SingleCommentResponse> AddComment(string slug, string comment)
         {
             var options = new AjaxOptions
             {

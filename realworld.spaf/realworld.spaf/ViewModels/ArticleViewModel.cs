@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Bridge.Html5;
 using Bridge.Navigation;
 using Bridge.Spaf;
+using realworld.spaf.Classes;
 using realworld.spaf.Models;
 using realworld.spaf.Services;
 using Retyped;
@@ -23,6 +25,7 @@ namespace realworld.spaf.ViewModels
 
         public Article Article { get; set; }
         public KnockoutObservableArray<Comment> Comments { get; set; }
+        public KnockoutObservable<string> Comment { get; set; }
         public bool IsLogged => this._userService.IsLogged;
         public User LoggedUser => this._userService.LoggedUser;
 
@@ -37,6 +40,7 @@ namespace realworld.spaf.ViewModels
 
             this.Article = new Article();
             this.Comments = ko.observableArray.Self<Comment>();
+            this.Comment = ko.observable.Self<string>();
         }
 
         public override async void OnLoad(Dictionary<string, object> parameters)
@@ -55,6 +59,30 @@ namespace realworld.spaf.ViewModels
             this._navigator.EnableSpafAnchors(); // todo check why not auto enabled
         }
 
+
+        /// <summary>
+        /// Add comment to article
+        /// </summary>
+        /// <returns></returns>
+        public async Task AddComment()
+        {
+            if (!this.IsLogged) return;
+            try
+            {
+                var commentResponse = await this._commentResources.AddComment(this.Article.Slug, this.Comment.Self());
+                this.Comment.Self(string.Empty);
+                this.Comments.push(commentResponse.Comment);
+            }
+            catch (PromiseException e)
+            {
+                var errors = e.GetErrorList();
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error);
+                }
+            }
+         
+        }
 
         /// <summary>
         /// Follow Article Author

@@ -18,6 +18,6 @@ namespace realworld.spaf.Services
         /// <param name="slug"></param>
         /// <param name="comment"></param>
         /// <returns></returns>
-        Task AddComment(string slug, string comment);
+        Task<SingleCommentResponse> AddComment(string slug, string comment);
     }
 }
