@@ -10,5 +10,4 @@ namespace realworld.spaf.Models.Response
         [JsonProperty("articlesCount")]
         public long ArticlesCount { get; set; }
     }
-    
 }

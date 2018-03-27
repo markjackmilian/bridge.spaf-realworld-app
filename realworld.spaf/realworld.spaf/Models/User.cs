@@ -20,6 +20,6 @@ namespace realworld.spaf.Models
         public string Bio { get; set; }
 
         [JsonProperty("image")]
-        public object Image { get; set; }
+        public string Image { get; set; }
     }
 }

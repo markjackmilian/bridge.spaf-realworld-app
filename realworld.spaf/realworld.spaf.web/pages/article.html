@@ -3,24 +3,24 @@
     <div class="banner">
         <div class="container">
 
-            <h1>How to build webapps that scale</h1>
+            <h1 data-bind="text: Article.Title" ></h1>
 
             <div class="article-meta">
                 <a href=""><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
                 <div class="info">
-                    <a href="" class="author">Eric Simons</a>
-                    <span class="date">January 20th</span>
+                    <a href="" class="author" data-bind="text: Article.Author.Username" ></a>
+                    <span class="date" data-bind="text:Article.Create"></span>
                 </div>
                 <button class="btn btn-sm btn-outline-secondary">
                     <i class="ion-plus-round"></i>
                     &nbsp;
-                    Follow Eric Simons <span class="counter">(10)</span>
+                    Follow <!--ko text:Article.Author.Username--><!--/ko--> <span class="counter"></span>
                 </button>
                 &nbsp;&nbsp;
                 <button class="btn btn-sm btn-outline-primary">
                     <i class="ion-heart"></i>
                     &nbsp;
-                    Favorite Post <span class="counter">(29)</span>
+                    Favorite Post <span class="counter">(<!--ko text:Article.FavoritesCount--><!--/ko-->)</span>
                 </button>
             </div>
 
@@ -31,11 +31,11 @@
 
         <div class="row article-content">
             <div class="col-md-12">
-                <p>
-                    Web development technologies have evolved at an incredible clip over the past few years.
-                </p>
-                <h2 id="introducing-ionic">Introducing RealWorld.</h2>
-                <p>It's a great solution for learning how other frameworks work.</p>
+                <p data-bind="text:Article.Description"></p>
+
+                <ul class="tag-list" data-bind="foreach: Article.TagList">
+                    <li class="tag-default tag-pill tag-outline" data-bind="text:$data"></li>
+                </ul>
             </div>
         </div>
 
@@ -43,77 +43,78 @@
 
         <div class="article-actions">
             <div class="article-meta">
-                <a href="profile.html"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
+                <a href="javascript:void(0);"><img data-bind="attr:{src: Article.Author.Image}" /></a>
                 <div class="info">
-                    <a href="" class="author">Eric Simons</a>
-                    <span class="date">January 20th</span>
+                    <a href="" class="author" data-bind="text:Article.Author.Username"></a>
+                    <span class="date" data-bind="text:Article.Create"></span>
                 </div>
 
                 <button class="btn btn-sm btn-outline-secondary">
                     <i class="ion-plus-round"></i>
                     &nbsp;
-                    Follow Eric Simons <span class="counter">(10)</span>
+                    Follow <!-- ko text: Article.Author.Username --><!--/ko--> <span class="counter"></span>
                 </button>
                 &nbsp;
                 <button class="btn btn-sm btn-outline-primary">
                     <i class="ion-heart"></i>
                     &nbsp;
-                    Favorite Post <span class="counter">(29)</span>
+                    Favorite Post <span class="counter">(<!--ko text:Article.FavoritesCount--><!--/ko-->)</span>
                 </button>
             </div>
         </div>
 
+
         <div class="row">
 
             <div class="col-xs-12 col-md-8 offset-md-2">
+
+                <!-- ko if: IsLogged == false -->
+                <p>
+                    <a href="spaf:login">Sign in</a> or <a href="spaf:register">sign up</a> to add comments on this article.
+                </p>
+                <!--/ko-->
+
+                <!-- ko if: IsLogged -->
 
                 <form class="card comment-form">
                     <div class="card-block">
                         <textarea class="form-control" placeholder="Write a comment..." rows="3"></textarea>
                     </div>
                     <div class="card-footer">
-                        <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
+                        <img data-bind="attr:{src: LoggedUser.Image}" class="comment-author-img" />
                         <button class="btn btn-sm btn-primary">
                             Post Comment
                         </button>
                     </div>
                 </form>
 
-                <div class="card">
-                    <div class="card-block">
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="" class="comment-author">
-                            <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
-                        </a>
-                        &nbsp;
-                        <a href="" class="comment-author">Jacob Schmidt</a>
-                        <span class="date-posted">Dec 29th</span>
-                    </div>
-                </div>
+                <!--/ko-->
+
+
+                <!-- ko foreach: Comments -->
 
                 <div class="card">
                     <div class="card-block">
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <p class="card-text" data-bind="text:Body"></p>
                     </div>
                     <div class="card-footer">
                         <a href="" class="comment-author">
-                            <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
+                            <img data-bind="attr:{src: Author.Image}"  class="comment-author-img" />
                         </a>
                         &nbsp;
-                        <a href="" class="comment-author">Jacob Schmidt</a>
-                        <span class="date-posted">Dec 29th</span>
-                        <span class="mod-options">
-                            <i class="ion-edit"></i>
-                            <i class="ion-trash-a"></i>
-                        </span>
+                        <a href="" class="comment-author" data-bind="text:Author.Username">Jacob Schmidt</a>
+                        <span class="date-posted" data-bind="text:Create"></span>
                     </div>
                 </div>
+
+                <!--/ko-->
+
 
             </div>
 
         </div>
+
+
 
     </div>
 

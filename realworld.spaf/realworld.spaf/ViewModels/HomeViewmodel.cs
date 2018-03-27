@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bridge.Html5;
+using Bridge.Navigation;
 using Bridge.Spaf;
 using realworld.spaf.Classes;
 using realworld.spaf.Models;
@@ -25,6 +26,7 @@ namespace realworld.spaf.ViewModels
         private readonly ISettings _settings;
         private readonly IUserService _userService;
         private readonly IFeedResources _feedResources;
+        private readonly INavigator _navigator;
 
         #region KNOCKOUTJS
         
@@ -38,12 +40,13 @@ namespace realworld.spaf.ViewModels
       
 
         public HomeViewModel(IArticleResources resources, ISettings settings, 
-            IUserService userService, IFeedResources feedResources)
+            IUserService userService, IFeedResources feedResources, INavigator navigator)
         {
             _resources = resources;
             _settings = settings;
             _userService = userService;
             _feedResources = feedResources;
+            _navigator = navigator;
             this.Articles = ko.observableArray.Self<Article>();
             this.Pages = ko.observableArray.Self<Paginator>();
             this.Tags = ko.observableArray.Self<string>();
@@ -81,7 +84,10 @@ namespace realworld.spaf.ViewModels
         /// <param name="article"></param>
         public void GoToArticle(Article article)
         {
-            Global.Alert($"Go to user {article.Slug}");
+            this._navigator.Navigate(SpafApp.ArticleId,new Dictionary<string, object>
+            {
+                {"slug",article.Slug}
+            });
         }
 
         /// <summary>

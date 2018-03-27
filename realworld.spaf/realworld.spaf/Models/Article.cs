@@ -10,6 +10,11 @@ namespace realworld.spaf.Models
 {
     public class Article
     {
+        public Article()
+        {
+            this.Author = new Author();
+        }
+        
         [JsonProperty("title")]
         public string Title { get; set; }
 
@@ -20,10 +25,10 @@ namespace realworld.spaf.Models
         public string Body { get; set; }
 
         [JsonProperty("createdAt")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         [JsonProperty("updatedAt")]
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         [JsonProperty("tagList")]
         public string[] TagList { get; set; }
@@ -40,6 +45,6 @@ namespace realworld.spaf.Models
         [JsonProperty("favoritesCount")]
         public long FavoritesCount { get; set; }
 
-        public string Create => this.CreatedAt.ToString("MMMM dd");
+        public string Create => this.CreatedAt?.ToString("MMMM dd");
     }
 }

@@ -58,7 +58,7 @@ namespace Bridge.Spaf
                     CanBeDirectLoad = ()=>true,
                     HtmlLocation = ()=>"pages/article.html", // yout html location
                     Key = SpafApp.ArticleId,
-                    //PageController = () => SpafApp.Container.Resolve<HomeViewModel>()
+                    PageController = () => SpafApp.Container.Resolve<ArticleViewModel>()
                 },
             };
         }

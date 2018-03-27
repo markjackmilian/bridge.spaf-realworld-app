@@ -7,5 +7,4 @@ namespace realworld.spaf.Models.Response
         [JsonProperty("tags")]
         public string[] Tags { get; set; }
     }
-
 }

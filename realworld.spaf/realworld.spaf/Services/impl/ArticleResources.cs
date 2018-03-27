@@ -41,6 +41,30 @@ namespace realworld.spaf.Services.impl
             
             return base.MakeCall<TagsResponse>(options);
         }
+
+        public Task<SingleArticleResponse> GetArticle(string slug)
+        {
+            var options = new AjaxOptions
+            {
+                Url = $"{this._settings.ApiUri}/articles/{slug}",
+                Type = "GET",
+                DataType = "json"
+            };
+            
+            return base.MakeCall<SingleArticleResponse>(options);
+        }
+
+        public Task<CommentsResponse> GetArticleComments(string slug)
+        {
+            var options = new AjaxOptions
+            {
+                Url = $"{this._settings.ApiUri}/articles/{slug}/comments",
+                Type = "GET",
+                DataType = "json"
+            };
+            
+            return base.MakeCall<CommentsResponse>(options);
+        }
     }
     
 }

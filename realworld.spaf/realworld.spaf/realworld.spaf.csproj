@@ -81,12 +81,15 @@
     <Compile Include="CustomRoutesConfig.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Request\UserRequest.cs" />
     <Compile Include="Models\Request\SignRequest.cs" />
     <Compile Include="Models\Response\ArticleResponse.cs" />
+    <Compile Include="Models\Response\CommentsResponse.cs" />
     <Compile Include="Models\Response\ErrorResponse.cs" />
     <Compile Include="Models\Response\SignResponse.cs" />
     <Compile Include="Models\Paginator.cs" />
+    <Compile Include="Models\Response\SingleArticleResponse.cs" />
     <Compile Include="Models\Response\TagsResponse.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,6 +106,7 @@
     <Compile Include="Services\IUserResources.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="SpafApp.cs" />
+    <Compile Include="ViewModels\ArticleViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\HomeViewmodel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
