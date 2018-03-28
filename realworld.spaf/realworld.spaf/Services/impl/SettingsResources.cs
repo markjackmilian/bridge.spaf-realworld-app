@@ -2,6 +2,7 @@
 using Bridge.jQuery2;
 using Newtonsoft.Json;
 using realworld.spaf.Models.Request;
+using realworld.spaf.Models.Response;
 
 namespace realworld.spaf.Services.impl
 {
@@ -19,7 +20,7 @@ namespace realworld.spaf.Services.impl
             this._settings = settings;
         }
 
-        public Task UpdateSettings(SettingsRequestResponse settingsRequest)
+        public Task<SettingsResponse> UpdateSettings(SettingsRequest settingsRequest)
         {
             var options = new AjaxOptions
             {
@@ -30,7 +31,7 @@ namespace realworld.spaf.Services.impl
                 Data = JsonConvert.SerializeObject(settingsRequest)
             };
 
-            return base.MakeCall<SettingsRequestResponse>(options);
+            return base.MakeCall<SettingsResponse>(options);
         }
     }
 }

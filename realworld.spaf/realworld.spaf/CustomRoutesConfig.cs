@@ -37,7 +37,7 @@ namespace Bridge.Spaf
                     CanBeDirectLoad = ()=>true,
                     HtmlLocation = ()=>"pages/profile.html", // yout html location
                     Key = SpafApp.ProfileId,
-                    //PageController = () => SpafApp.Container.Resolve<HomeViewModel>()
+                    PageController = () => SpafApp.Container.Resolve<ProfileViewModel>()
                 },
                 new PageDescriptor
                 {

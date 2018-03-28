@@ -52,7 +52,7 @@ namespace realworld.spaf.ViewModels
         {
             try
             {
-                var settingsRequest = new SettingsRequestResponse
+                var settingsRequest = new SettingsRequest
                 {
                     Username = this.Username.Self(),
                     NewPassword = this.NewPassword.Self(),
@@ -61,7 +61,7 @@ namespace realworld.spaf.ViewModels
                     ImageUri = this.ImageUri.Self()
                 };
 
-                await this._settingsResources.UpdateSettings(settingsRequest);
+                var userUpdated = await this._settingsResources.UpdateSettings(settingsRequest);
                 this._navigator.Navigate(SpafApp.ProfileId);
 
             }

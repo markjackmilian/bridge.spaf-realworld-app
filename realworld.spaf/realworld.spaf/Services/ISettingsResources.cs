@@ -1,4 +1,5 @@
 ﻿using realworld.spaf.Models.Request;
+using realworld.spaf.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,6 @@ namespace realworld.spaf.Services
         /// </summary>
         /// <param name="settingsRequest"></param>
         /// <returns></returns>
-        Task UpdateSettings(SettingsRequestResponse settingsRequest);
+        Task<SettingsResponse> UpdateSettings(SettingsRequest settingsRequest);
     }
 }

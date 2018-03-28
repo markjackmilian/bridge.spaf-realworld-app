@@ -2,7 +2,7 @@
 
 namespace realworld.spaf.Models.Request
 {
-    public class SettingsRequestResponse
+    public class SettingsRequest
     {
         [JsonProperty("image")]
         public string ImageUri { get; set; }

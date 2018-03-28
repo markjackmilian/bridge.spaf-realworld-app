@@ -82,12 +82,13 @@
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Comment.cs" />
-    <Compile Include="Models\Request\SettingsRequestResponse.cs" />
+    <Compile Include="Models\Request\SettingsRequest.cs" />
     <Compile Include="Models\Request\UserRequest.cs" />
     <Compile Include="Models\Request\SignRequest.cs" />
     <Compile Include="Models\Response\ArticleResponse.cs" />
     <Compile Include="Models\Response\CommentsResponse.cs" />
     <Compile Include="Models\Response\ErrorResponse.cs" />
+    <Compile Include="Models\Response\SettingsResponse.cs" />
     <Compile Include="Models\Response\SignResponse.cs" />
     <Compile Include="Models\Paginator.cs" />
     <Compile Include="Models\Response\SingleArticleResponse.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\HomeViewmodel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
   </ItemGroup>
