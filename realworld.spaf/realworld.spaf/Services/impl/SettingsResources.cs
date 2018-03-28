@@ -6,16 +6,11 @@ using realworld.spaf.Models.Response;
 
 namespace realworld.spaf.Services.impl
 {
-    class SettingsResources: ResourceBase, ISettingsResources
+    class SettingsResources: AuthorizedResourceBase, ISettingsResources
     {
         private readonly ISettings _settings;
 
-        //public SettingsResources(ISettings settings, IUserService userService) : base(userService)
-        //{
-        //    this._settings = settings;
-        //}
-
-        public SettingsResources(ISettings settings)
+        public SettingsResources(ISettings settings, IUserService userService) : base(userService)
         {
             this._settings = settings;
         }
@@ -31,7 +26,7 @@ namespace realworld.spaf.Services.impl
                 Data = JsonConvert.SerializeObject(settingsRequest)
             };
 
-            return base.MakeCall<SettingsResponse>(options);
+            return base.MakeAuthorizedCall<SettingsResponse>(options);
         }
     }
 }

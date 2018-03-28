@@ -11,6 +11,7 @@ namespace realworld.spaf.ViewModels
 {
     class SettingsViewModel : LoadableViewModel
     {
+        private readonly IUserService _userService;
         private readonly ISettingsResources _settingsResources;
         private readonly INavigator _navigator;
 
@@ -24,8 +25,9 @@ namespace realworld.spaf.ViewModels
         public KnockoutObservableArray<string> Errors { get; set; }
 
 
-        public SettingsViewModel(ISettingsResources settingsResources, INavigator navigator)
+        public SettingsViewModel(IUserService userService, ISettingsResources settingsResources, INavigator navigator)
         {
+            this._userService = userService;
             this._settingsResources = settingsResources;
             this._navigator = navigator;
 
@@ -41,7 +43,7 @@ namespace realworld.spaf.ViewModels
 
         private void PopulateEntries()
         {
-            var user = SpafApp.Container.Resolve<IUserService>().LoggedUser;
+            var user = this._userService.LoggedUser;
             this.Username.Self(user.Username);
             this.Email.Self(user.Email);
             this.ImageUri.Self(user.Image);

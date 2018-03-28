@@ -10,13 +10,11 @@ namespace realworld.spaf.Services.impl
     class UserService : IUserService
     {
         private readonly IUserResources _userResources;
-        private readonly ISettingsResources _settingsResources;
         private readonly IMessenger _messenger;
 
-        public UserService(IUserResources userResources, ISettingsResources settingsResources, IMessenger messenger)
+        public UserService(IUserResources userResources, IMessenger messenger)
         {
             _userResources = userResources;
-            _settingsResources = settingsResources;
             _messenger = messenger;
         }
 
