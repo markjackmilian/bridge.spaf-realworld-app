@@ -39,16 +39,17 @@ namespace Bridge.Spaf
             RegisterAllViewModels();
 
             // register custom resource, services..
+            Container.RegisterSingleInstance<ISettings, Settings>();
+            Container.RegisterSingleInstance<IUserService, UserService>();
+
             Container.Register<IArticleResources,ArticleResources>();
             Container.Register<IUserResources,UserResources>();
             Container.Register<IFeedResources,FeedResources>();
             Container.Register<ICommentResources,CommentResources>();
             Container.Register<IProfileResources,ProfileResources>();
             
-            Container.RegisterSingleInstance<ISettings,Settings>();
-            Container.RegisterSingleInstance<IUserService,UserService>();
-            
             Container.Register<IRepository,LocalStorageRepository>();
+            Container.Register<ISettingsResources,SettingsResources>();
 
         }
 

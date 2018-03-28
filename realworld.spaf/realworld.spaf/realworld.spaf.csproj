@@ -83,12 +83,14 @@
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Profile.cs" />
+    <Compile Include="Models\Request\SettingsRequest.cs" />
     <Compile Include="Models\Request\UserRequest.cs" />
     <Compile Include="Models\Request\SignRequest.cs" />
     <Compile Include="Models\Response\ArticleResponse.cs" />
     <Compile Include="Models\Response\FollowResponse.cs" />
     <Compile Include="Models\Response\CommentsResponse.cs" />
     <Compile Include="Models\Response\ErrorResponse.cs" />
+    <Compile Include="Models\Response\SettingsResponse.cs" />
     <Compile Include="Models\Response\SignResponse.cs" />
     <Compile Include="Models\Paginator.cs" />
     <Compile Include="Models\Response\SingleArticleResponse.cs" />
@@ -106,12 +108,14 @@
     <Compile Include="Services\impl\LocalStorageRepository.cs" />
     <Compile Include="Services\impl\ProfileResources.cs" />
     <Compile Include="Services\impl\ResourceBase.cs" />
+    <Compile Include="Services\impl\SettingsResources.cs" />
     <Compile Include="Services\impl\UserResources.cs" />
     <Compile Include="Services\impl\UserService.cs" />
     <Compile Include="Services\IProfileResources.cs" />
     <Compile Include="Services\IRepository.cs" />
     <Compile Include="Services\ISettings.cs" />
     <Compile Include="Services\impl\Settings.cs" />
+    <Compile Include="Services\ISettingsResources.cs" />
     <Compile Include="Services\IUserResources.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="SpafApp.cs" />
@@ -119,7 +123,9 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bridge.json" />
