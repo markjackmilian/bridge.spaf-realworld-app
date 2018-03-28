@@ -10,11 +10,13 @@ namespace realworld.spaf.Services.impl
     class UserService : IUserService
     {
         private readonly IUserResources _userResources;
+        private readonly ISettingsResources _settingsResources;
         private readonly IMessenger _messenger;
 
-        public UserService(IUserResources userResources, IMessenger messenger)
+        public UserService(IUserResources userResources, ISettingsResources settingsResources, IMessenger messenger)
         {
             _userResources = userResources;
+            _settingsResources = settingsResources;
             _messenger = messenger;
         }
 
@@ -50,20 +52,6 @@ namespace realworld.spaf.Services.impl
             
             this.LoggedUser = loginResponse.User;
             this._messenger.Send(this,SpafApp.Messages.LoginDone);
-        }
-
-        public async Task UpdateSettings(string username, string newPassword, string biography, string email, string imageUri)
-        {
-            var settingsRequest = new SettingsRequestResponse
-            {
-                Username = username,
-                NewPassword = newPassword,
-                Biography = biography,
-                Email = email,
-                ImageUri = imageUri
-            };
-
-            await this._userResources.UpdateSettings(settingsRequest);
         }
     }
 }

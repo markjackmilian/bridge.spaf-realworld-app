@@ -11,7 +11,7 @@ namespace realworld.spaf.ViewModels
 {
     class SettingsViewModel : LoadableViewModel
     {
-        private readonly IUserService _userService;
+        private readonly ISettingsResources _settingsResources;
         private readonly INavigator _navigator;
 
         protected override string ElementId() => SpafApp.SettingsId;
@@ -24,9 +24,9 @@ namespace realworld.spaf.ViewModels
         public KnockoutObservableArray<string> Errors { get; set; }
 
 
-        public SettingsViewModel(IUserService userService, INavigator navigator)
+        public SettingsViewModel(ISettingsResources settingsResources, INavigator navigator)
         {
-            this._userService = userService;
+            this._settingsResources = settingsResources;
             this._navigator = navigator;
 
             this.ImageUri = ko.observable.Self<string>();
@@ -41,7 +41,7 @@ namespace realworld.spaf.ViewModels
 
         private void PopulateEntries()
         {
-            var user = this._userService.LoggedUser;
+            var user = SpafApp.Container.Resolve<IUserService>().LoggedUser;
             this.Username.Self(user.Username);
             this.Email.Self(user.Email);
             this.ImageUri.Self(user.Image);
@@ -52,7 +52,16 @@ namespace realworld.spaf.ViewModels
         {
             try
             {
-                await this._userService.UpdateSettings(this.Username.Self(), this.NewPassword.Self(), this.Biography.Self(), this.Email.Self(), this.ImageUri.Self());
+                var settingsRequest = new SettingsRequestResponse
+                {
+                    Username = this.Username.Self(),
+                    NewPassword = this.NewPassword.Self(),
+                    Biography = this.Biography.Self(),
+                    Email = this.Email.Self(),
+                    ImageUri = this.ImageUri.Self()
+                };
+
+                await this._settingsResources.UpdateSettings(settingsRequest);
                 this._navigator.Navigate(SpafApp.ProfileId);
 
             }

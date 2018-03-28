@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection;
-using Bridge;
 using Bridge.Ioc;
 using Bridge.Messenger;
 using Bridge.Navigation;
@@ -42,7 +40,8 @@ namespace Bridge.Spaf
             Container.Register<IUserResources,UserResources>();
             Container.Register<IFeedResources,FeedResources>();
             Container.Register<ICommentResources,CommentResources>();
-            
+            Container.Register<ISettingsResources,SettingsResources>();
+
             Container.RegisterSingleInstance<ISettings,Settings>();
             Container.RegisterSingleInstance<IUserService,UserService>();
 

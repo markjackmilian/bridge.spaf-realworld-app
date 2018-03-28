@@ -103,10 +103,12 @@
     <Compile Include="Services\impl\CommentResources.cs" />
     <Compile Include="Services\impl\FeedResources.cs" />
     <Compile Include="Services\impl\ResourceBase.cs" />
+    <Compile Include="Services\impl\SettingsResources.cs" />
     <Compile Include="Services\impl\UserResources.cs" />
     <Compile Include="Services\impl\UserService.cs" />
     <Compile Include="Services\ISettings.cs" />
     <Compile Include="Services\impl\Settings.cs" />
+    <Compile Include="Services\ISettingsResources.cs" />
     <Compile Include="Services\IUserResources.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="SpafApp.cs" />

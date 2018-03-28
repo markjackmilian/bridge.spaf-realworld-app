@@ -42,19 +42,5 @@ namespace realworld.spaf.Services.impl
 
             return base.MakeCall<SignResponse>(options);
         }
-
-        public Task UpdateSettings(SettingsRequestResponse settingsRequest)
-        {
-            var options = new AjaxOptions
-            {
-                Url = $"{this._settings.ApiUri}/user",
-                Type = "POST",
-                DataType = "json",
-                ContentType = "application/json",
-                Data = JsonConvert.SerializeObject(settingsRequest)
-            };
-
-            return base.MakeCall<SettingsRequestResponse>(options);
-        }
     }
 }
