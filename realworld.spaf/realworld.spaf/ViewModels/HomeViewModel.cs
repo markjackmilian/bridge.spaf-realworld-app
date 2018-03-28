@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bridge.Html5;
+using Bridge.Messenger;
 using Bridge.Navigation;
 using Bridge.Spaf;
 using realworld.spaf.Classes;
@@ -24,6 +25,7 @@ namespace realworld.spaf.ViewModels
         
         private readonly IArticleResources _resources;
         private readonly ISettings _settings;
+        private readonly IMessenger _messenger;
         private readonly IUserService _userService;
         private readonly IFeedResources _feedResources;
         private readonly INavigator _navigator;
@@ -39,11 +41,12 @@ namespace realworld.spaf.ViewModels
         #endregion
       
 
-        public HomeViewModel(IArticleResources resources, ISettings settings, 
+        public HomeViewModel(IArticleResources resources, ISettings settings, IMessenger messenger,
             IUserService userService, IFeedResources feedResources, INavigator navigator)
         {
             _resources = resources;
             _settings = settings;
+            _messenger = messenger;
             _userService = userService;
             _feedResources = feedResources;
             _navigator = navigator;
@@ -53,17 +56,20 @@ namespace realworld.spaf.ViewModels
             this.Tabs = ko.observableArray.Self<string>();
             this.IsLogged = ko.observable.Self<bool>(this._userService.IsLogged);
             this.ActiveTabIndex = ko.observable.Self<int>(-1);
+            
+            this._messenger.Subscribe<IUserService>(this,SpafApp.Messages.LoginDone, service =>
+            {
+                this.IsLogged.Self(true);
+            });
         }
 
         public override async void OnLoad(Dictionary<string, object> parameters)
         {
             base.OnLoad(parameters); // always call base (where applybinding)
 
-            var autoLoginTask = this._userService.TryAutoLoginWithStoredToken(); // autologin task
             var articlesTask = this.LoadArticles(ArticleRequestBuilder.Default().WithLimit(this._settings.ArticleInPage)); // load article task
             var loadTagsTask = this.LoadTags();
-            await Task.WhenAll(articlesTask,loadTagsTask,autoLoginTask);
-            this.IsLogged.Self(this._userService.IsLogged); 
+            await Task.WhenAll(articlesTask,loadTagsTask);
             this.RefreshPaginator(articlesTask.Result);
         }
 
