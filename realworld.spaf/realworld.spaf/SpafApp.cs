@@ -45,14 +45,10 @@ namespace Bridge.Spaf
             Container.Register<ICommentResources,CommentResources>();
             Container.Register<ISettingsResources,SettingsResources>();
 
-
-
-
         }
 
         #region PAGES IDS
         // static pages id
-
 
         public static string HomeId => "home";
         public static string LoginId => "login";
@@ -61,8 +57,6 @@ namespace Bridge.Spaf
         public static string SettingsId => "settings";
         public static string EditArticleId => "editArticle";
         public static string ArticleId => "article";
-
-        
 
         #endregion
 
