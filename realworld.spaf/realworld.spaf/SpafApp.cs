@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
+using Bridge;
 using Bridge.Ioc;
 using Bridge.Messenger;
 using Bridge.Navigation;
@@ -18,9 +20,10 @@ namespace Bridge.Spaf
         {
             Container = new BridgeIoc();
             ContainerConfig(); // config container
-            Container.Resolve<INavigator>().InitNavigation(); // init navigation
             var mainVm = Container.Resolve<MainViewModel>();
             mainVm.Start();
+            
+            Container.Resolve<INavigator>().InitNavigation(); // init navigation
         }
 
         private static void ContainerConfig()
@@ -43,12 +46,16 @@ namespace Bridge.Spaf
             Container.Register<IUserResources,UserResources>();
             Container.Register<IFeedResources,FeedResources>();
             Container.Register<ICommentResources,CommentResources>();
+            Container.Register<IProfileResources,ProfileResources>();
+            
+            Container.Register<IRepository,LocalStorageRepository>();
             Container.Register<ISettingsResources,SettingsResources>();
 
         }
 
         #region PAGES IDS
         // static pages id
+
 
         public static string HomeId => "home";
         public static string LoginId => "login";
@@ -57,6 +64,8 @@ namespace Bridge.Spaf
         public static string SettingsId => "settings";
         public static string EditArticleId => "editArticle";
         public static string ArticleId => "article";
+
+        
 
         #endregion
 

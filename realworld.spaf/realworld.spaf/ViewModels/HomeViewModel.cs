@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bridge.Html5;
+using Bridge.Messenger;
 using Bridge.Navigation;
 using Bridge.Spaf;
 using realworld.spaf.Classes;
@@ -24,6 +25,7 @@ namespace realworld.spaf.ViewModels
         
         private readonly IArticleResources _resources;
         private readonly ISettings _settings;
+        private readonly IMessenger _messenger;
         private readonly IUserService _userService;
         private readonly IFeedResources _feedResources;
         private readonly INavigator _navigator;
@@ -35,15 +37,16 @@ namespace realworld.spaf.ViewModels
         public KnockoutObservableArray<string> Tags; // tags
         public KnockoutObservable<int> ActiveTabIndex; // tab active index
         public KnockoutObservableArray<string> Tabs;
-        public bool IsLogged => this._userService.IsLogged;
+        public KnockoutObservable<bool> IsLogged;
         #endregion
       
 
-        public HomeViewModel(IArticleResources resources, ISettings settings, 
+        public HomeViewModel(IArticleResources resources, ISettings settings, IMessenger messenger,
             IUserService userService, IFeedResources feedResources, INavigator navigator)
         {
             _resources = resources;
             _settings = settings;
+            _messenger = messenger;
             _userService = userService;
             _feedResources = feedResources;
             _navigator = navigator;
@@ -51,19 +54,22 @@ namespace realworld.spaf.ViewModels
             this.Pages = ko.observableArray.Self<Paginator>();
             this.Tags = ko.observableArray.Self<string>();
             this.Tabs = ko.observableArray.Self<string>();
-            this.ActiveTabIndex = ko.observable.Self<int>(this.IsLogged ? -2 : -1);
+            this.IsLogged = ko.observable.Self<bool>(this._userService.IsLogged);
+            this.ActiveTabIndex = ko.observable.Self<int>(-1);
+            
+            this._messenger.Subscribe<IUserService>(this,SpafApp.Messages.LoginDone, service =>
+            {
+                this.IsLogged.Self(true);
+            });
         }
 
         public override async void OnLoad(Dictionary<string, object> parameters)
         {
             base.OnLoad(parameters); // always call base (where applybinding)
 
-            var articlesTask = this._userService.IsLogged
-                ? this.LoadFeed(FeedRequestBuilder.Default().WithLimit(this._settings.ArticleInPage))
-                : this.LoadArticles(ArticleRequestBuilder.Default().WithLimit(this._settings.ArticleInPage));
-            
-            await Task.WhenAll(articlesTask,this.LoadTags());
-            
+            var articlesTask = this.LoadArticles(ArticleRequestBuilder.Default().WithLimit(this._settings.ArticleInPage)); // load article task
+            var loadTagsTask = this.LoadTags();
+            await Task.WhenAll(articlesTask,loadTagsTask);
             this.RefreshPaginator(articlesTask.Result);
         }
 
@@ -98,7 +104,7 @@ namespace realworld.spaf.ViewModels
         /// <returns></returns>
         public async Task AddToFavourite(Article article)
         {
-            if (!this.IsLogged) return;
+            if (!this.IsLogged.Self()) return;
             
         }
 

@@ -1,4 +1,5 @@
-﻿using Bridge.Messenger;
+﻿using System.Threading.Tasks;
+using Bridge.Messenger;
 using Bridge.Spaf;
 using Bridge.Spaf.Attributes;
 using realworld.spaf.Services;
@@ -9,15 +10,15 @@ namespace realworld.spaf.ViewModels
     [SingleInstance]
     public class MainViewModel
     {
-        private readonly IUserService _userService;
         private readonly IMessenger _messenger;
+        private readonly IUserService _userService;
 
         public KnockoutObservable<bool> IsLogged { get; set; }
 
-        public MainViewModel(IUserService userService, IMessenger messenger)
+        public MainViewModel(IMessenger messenger, IUserService userService)
         {
-            _userService = userService;
             _messenger = messenger;
+            _userService = userService;
 
             this.IsLogged = ko.observable.Self<bool>(false);
             
@@ -27,10 +28,16 @@ namespace realworld.spaf.ViewModels
                 });
             
         }
+        
 
+        /// <summary>
+        /// Apply binding to mainmodel
+        /// try auto login
+        /// </summary>
         public void Start()
         {
             ko.applyBindings(this);
+            this._userService.TryAutoLoginWithStoredToken();
         }
     }
 }

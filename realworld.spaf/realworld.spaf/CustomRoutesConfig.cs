@@ -1,12 +1,19 @@
 ﻿using System.Collections.Generic;
 using Bridge.jQuery2;
 using Bridge.Navigation;
+using realworld.spaf.Services;
 using realworld.spaf.ViewModels;
 
 namespace Bridge.Spaf
 {
     class CustomRoutesConfig : BridgeNavigatorConfigBase
     {
+        private readonly IUserService _userService;
+        public CustomRoutesConfig(IUserService userService)
+        {
+            this._userService = userService;
+        }
+        
         public override IList<IPageDescriptor> CreateRoutes()
         {
             return new List<IPageDescriptor>
@@ -34,17 +41,18 @@ namespace Bridge.Spaf
                 },
                 new PageDescriptor
                 {
-                    CanBeDirectLoad = ()=>true,
+                    CanBeDirectLoad = ()=>this._userService.IsLogged,
                     HtmlLocation = ()=>"pages/profile.html", // yout html location
                     Key = SpafApp.ProfileId,
                     PageController = () => SpafApp.Container.Resolve<ProfileViewModel>()
                 },
                 new PageDescriptor
                 {
-                    CanBeDirectLoad = ()=>true,
+                    CanBeDirectLoad = ()=>this._userService.IsLogged,
                     HtmlLocation = ()=>"pages/settings.html", // yout html location
                     Key = SpafApp.SettingsId,
-                    PageController = () => SpafApp.Container.Resolve<SettingsViewModel>()
+                    PageController = () => SpafApp.Container.Resolve<SettingsViewModel>(),
+                    
                 },
                 new PageDescriptor
                 {

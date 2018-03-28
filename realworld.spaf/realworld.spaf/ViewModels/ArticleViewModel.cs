@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Bridge.Html5;
 using Bridge.Navigation;
 using Bridge.Spaf;
+using realworld.spaf.Classes;
 using realworld.spaf.Models;
 using realworld.spaf.Services;
 using Retyped;
@@ -14,27 +16,33 @@ namespace realworld.spaf.ViewModels
 {
     class ArticleViewModel : LoadableViewModel
     {
+        protected override string ElementId() => SpafApp.ArticleId;
+
         private readonly IArticleResources _articleResources;
         private readonly IUserService _userService;
         private readonly INavigator _navigator;
         private readonly ICommentResources _commentResources;
-        protected override string ElementId() => SpafApp.ArticleId;
+        private readonly IProfileResources _profileResources;
 
         public Article Article { get; set; }
         public KnockoutObservableArray<Comment> Comments { get; set; }
+        public KnockoutObservable<string> Comment { get; set; }
+        
         public bool IsLogged => this._userService.IsLogged;
         public User LoggedUser => this._userService.LoggedUser;
 
         public ArticleViewModel(IArticleResources articleResources, IUserService userService, 
-            INavigator navigator, ICommentResources commentResources)
+            INavigator navigator, ICommentResources commentResources, IProfileResources profileResources)
         {
             _articleResources = articleResources;
             _userService = userService;
             _navigator = navigator;
             _commentResources = commentResources;
+            _profileResources = profileResources;
 
             this.Article = new Article();
             this.Comments = ko.observableArray.Self<Comment>();
+            this.Comment = ko.observable.Self<string>();
         }
 
         public override async void OnLoad(Dictionary<string, object> parameters)
@@ -53,6 +61,28 @@ namespace realworld.spaf.ViewModels
             this._navigator.EnableSpafAnchors(); // todo check why not auto enabled
         }
 
+        /// <summary>
+        /// Add comment to article
+        /// </summary>
+        /// <returns></returns>
+        public async Task AddComment()
+        {
+            if (!this.IsLogged) return;
+            
+            var commentResponse = await this._commentResources.AddComment(this.Article.Slug, this.Comment.Self());
+            this.Comment.Self(string.Empty);
+            this.Comments.push(commentResponse.Comment);
+        }
+
+        /// <summary>
+        /// Follow Article Author
+        /// </summary>
+        /// <returns></returns>
+        public async Task FollowAuthor()
+        {
+            await this._profileResources.Follow(this.Article.Author.Username);
+        }
+        
         /// <summary>
         /// Manual revaluate binding
         /// </summary>

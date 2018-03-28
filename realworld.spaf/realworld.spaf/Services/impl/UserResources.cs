@@ -10,7 +10,7 @@ namespace realworld.spaf.Services.impl
     {
         private readonly ISettings _settings;
 
-        public UserResources(ISettings settings)
+        public UserResources(ISettings settings) 
         {
             _settings = settings;
         }
@@ -41,6 +41,24 @@ namespace realworld.spaf.Services.impl
             };
 
             return base.MakeCall<SignResponse>(options);
+        }
+
+        public Task<SignResponse> GetCurrentUser(string token)
+        {
+            var options = new AjaxOptions
+            {
+                Url = $"{this._settings.ApiUri}/user",
+                Type = "GET",
+                DataType = "json",
+                BeforeSend = (xhr, o) =>
+                {
+                    xhr.SetRequestHeader("Authorization", $"Token {token}");
+                    return true;
+                }
+            };
+            
+            return base.MakeCall<SignResponse>(options);
+
         }
     }
 }
