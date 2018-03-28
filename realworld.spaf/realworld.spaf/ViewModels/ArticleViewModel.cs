@@ -16,16 +16,18 @@ namespace realworld.spaf.ViewModels
 {
     class ArticleViewModel : LoadableViewModel
     {
+        protected override string ElementId() => SpafApp.ArticleId;
+
         private readonly IArticleResources _articleResources;
         private readonly IUserService _userService;
         private readonly INavigator _navigator;
         private readonly ICommentResources _commentResources;
         private readonly IProfileResources _profileResources;
-        protected override string ElementId() => SpafApp.ArticleId;
 
         public Article Article { get; set; }
         public KnockoutObservableArray<Comment> Comments { get; set; }
         public KnockoutObservable<string> Comment { get; set; }
+        
         public bool IsLogged => this._userService.IsLogged;
         public User LoggedUser => this._userService.LoggedUser;
 
@@ -59,7 +61,6 @@ namespace realworld.spaf.ViewModels
             this._navigator.EnableSpafAnchors(); // todo check why not auto enabled
         }
 
-
         /// <summary>
         /// Add comment to article
         /// </summary>
@@ -67,21 +68,10 @@ namespace realworld.spaf.ViewModels
         public async Task AddComment()
         {
             if (!this.IsLogged) return;
-            try
-            {
-                var commentResponse = await this._commentResources.AddComment(this.Article.Slug, this.Comment.Self());
-                this.Comment.Self(string.Empty);
-                this.Comments.push(commentResponse.Comment);
-            }
-            catch (PromiseException e)
-            {
-                var errors = e.GetErrorList();
-                foreach (var error in errors)
-                {
-                    Console.WriteLine(error);
-                }
-            }
-         
+            
+            var commentResponse = await this._commentResources.AddComment(this.Article.Slug, this.Comment.Self());
+            this.Comment.Self(string.Empty);
+            this.Comments.push(commentResponse.Comment);
         }
 
         /// <summary>
@@ -92,7 +82,6 @@ namespace realworld.spaf.ViewModels
         {
             await this._profileResources.Follow(this.Article.Author.Username);
         }
-        
         
         /// <summary>
         /// Manual revaluate binding
