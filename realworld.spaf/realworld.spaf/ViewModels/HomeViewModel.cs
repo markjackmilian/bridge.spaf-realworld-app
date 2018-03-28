@@ -35,7 +35,7 @@ namespace realworld.spaf.ViewModels
         public KnockoutObservableArray<string> Tags; // tags
         public KnockoutObservable<int> ActiveTabIndex; // tab active index
         public KnockoutObservableArray<string> Tabs;
-        public bool IsLogged => this._userService.IsLogged;
+        public KnockoutObservable<bool> IsLogged;
         #endregion
       
 
@@ -51,19 +51,19 @@ namespace realworld.spaf.ViewModels
             this.Pages = ko.observableArray.Self<Paginator>();
             this.Tags = ko.observableArray.Self<string>();
             this.Tabs = ko.observableArray.Self<string>();
-            this.ActiveTabIndex = ko.observable.Self<int>(this.IsLogged ? -2 : -1);
+            this.IsLogged = ko.observable.Self<bool>(this._userService.IsLogged);
+            this.ActiveTabIndex = ko.observable.Self<int>(-1);
         }
 
         public override async void OnLoad(Dictionary<string, object> parameters)
         {
             base.OnLoad(parameters); // always call base (where applybinding)
 
-            var articlesTask = this._userService.IsLogged
-                ? this.LoadFeed(FeedRequestBuilder.Default().WithLimit(this._settings.ArticleInPage))
-                : this.LoadArticles(ArticleRequestBuilder.Default().WithLimit(this._settings.ArticleInPage));
-            
-            await Task.WhenAll(articlesTask,this.LoadTags());
-            
+            var autoLoginTask = this._userService.TryAutoLoginWithStoredToken(); // autologin task
+            var articlesTask = this.LoadArticles(ArticleRequestBuilder.Default().WithLimit(this._settings.ArticleInPage)); // load article task
+            var loadTagsTask = this.LoadTags();
+            await Task.WhenAll(articlesTask,loadTagsTask,autoLoginTask);
+            this.IsLogged.Self(this._userService.IsLogged); 
             this.RefreshPaginator(articlesTask.Result);
         }
 
@@ -98,7 +98,7 @@ namespace realworld.spaf.ViewModels
         /// <returns></returns>
         public async Task AddToFavourite(Article article)
         {
-            if (!this.IsLogged) return;
+            if (!this.IsLogged.Self()) return;
             
         }
 

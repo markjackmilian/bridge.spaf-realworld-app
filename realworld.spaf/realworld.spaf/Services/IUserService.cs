@@ -24,5 +24,12 @@ namespace realworld.spaf.Services
         /// <param name="password"></param>
         /// <returns></returns>
         Task Register(string username, string mail, string password);
+
+
+        /// <summary>
+        /// Try auto login using stored token (if exist)
+        /// </summary>
+        /// <returns></returns>
+        Task TryAutoLoginWithStoredToken();
     }
 }

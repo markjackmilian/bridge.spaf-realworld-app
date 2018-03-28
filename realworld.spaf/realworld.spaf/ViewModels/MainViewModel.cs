@@ -9,14 +9,12 @@ namespace realworld.spaf.ViewModels
     [SingleInstance]
     public class MainViewModel
     {
-        private readonly IUserService _userService;
         private readonly IMessenger _messenger;
 
         public KnockoutObservable<bool> IsLogged { get; set; }
 
-        public MainViewModel(IUserService userService, IMessenger messenger)
+        public MainViewModel(IMessenger messenger)
         {
-            _userService = userService;
             _messenger = messenger;
 
             this.IsLogged = ko.observable.Self<bool>(false);
@@ -27,7 +25,11 @@ namespace realworld.spaf.ViewModels
                 });
             
         }
+        
 
+        /// <summary>
+        /// Apply binding to mainmodel
+        /// </summary>
         public void Start()
         {
             ko.applyBindings(this);

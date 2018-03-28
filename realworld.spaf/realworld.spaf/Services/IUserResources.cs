@@ -21,5 +21,13 @@ namespace realworld.spaf.Services
         /// <returns></returns>
         Task<SignResponse> Register(SignRequest loginRequest);
 
+
+        /// <summary>
+        /// Get current user info
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        Task<SignResponse> GetCurrentUser(string token);
+
     }
 }

@@ -24,18 +24,18 @@
                     <!--<i class="ion-compose"></i>&nbsp;New Post-->
                 <!--</a>-->
             <!--</li>-->
-            <li class="nav-item" data-bind="if: IsLogged">
+            <li class="nav-item" data-bind="visible: IsLogged">
                 <a class="nav-link" href="spaf:settings">
                     <i class="ion-gear-a"></i>&nbsp;Settings
                 </a>
             </li>
-            <li class="nav-item" data-bind="if: IsLogged">
+            <li class="nav-item" data-bind="visible: IsLogged">
                 <a class="nav-link" href="spaf:profile">Profile</a>
             </li>
-            <li class="nav-item" data-bind="if: IsLogged() == false">
+            <li class="nav-item" data-bind="visible: IsLogged() == false">
                 <a class="nav-link" href="spaf:login">Sign in</a>
             </li>
-            <li class="nav-item" data-bind="if: IsLogged() == false">
+            <li class="nav-item" data-bind="visible: IsLogged() == false">
                 <a class="nav-link" href="spaf:register">Sign up</a>
             </li>
 

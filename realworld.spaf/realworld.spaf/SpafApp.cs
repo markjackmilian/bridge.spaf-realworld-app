@@ -20,9 +20,10 @@ namespace Bridge.Spaf
         {
             Container = new BridgeIoc();
             ContainerConfig(); // config container
-            Container.Resolve<INavigator>().InitNavigation(); // init navigation
             var mainVm = Container.Resolve<MainViewModel>();
             mainVm.Start();
+            
+            Container.Resolve<INavigator>().InitNavigation(); // init navigation
         }
 
         private static void ContainerConfig()
@@ -46,7 +47,8 @@ namespace Bridge.Spaf
             
             Container.RegisterSingleInstance<ISettings,Settings>();
             Container.RegisterSingleInstance<IUserService,UserService>();
-
+            
+            Container.Register<IRepository,LocalStorageRepository>();
 
         }
 
