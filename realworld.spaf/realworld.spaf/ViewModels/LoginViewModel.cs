@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Bridge.Navigation;
 using Bridge.Spaf;
 using realworld.spaf.Classes;
-using realworld.spaf.Models.Request;
 using realworld.spaf.Services;
 using static Retyped.knockout;
 
@@ -37,7 +35,7 @@ namespace realworld.spaf.ViewModels
             {
                 this.Errors.removeAll();
                 await this._userService.Login(this.Email.Self(), this.Password.Self());
-                this._navigator.Navigate(SpafApp.HomeId);
+                this._navigator.Navigate(SpafApp.HomeId);   
             }
             
             catch (PromiseException e)

@@ -23,7 +23,7 @@ namespace realworld.spaf.Services.impl
                 DataType = "json",
             };
 
-            return base.MakeCall<ArticleResponse>(options);
+            return base.MakeAuthorizedCall<ArticleResponse>(options);
         }
 
     }

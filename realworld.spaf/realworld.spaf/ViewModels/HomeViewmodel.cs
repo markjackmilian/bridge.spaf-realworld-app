@@ -184,7 +184,7 @@ namespace realworld.spaf.ViewModels
         
         #endregion
 
-        #region PRIATE METHODS
+        #region PRIVATE METHODS
 
         /// <summary>
         /// Load articles
