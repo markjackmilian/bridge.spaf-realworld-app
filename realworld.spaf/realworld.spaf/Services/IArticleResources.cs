@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using realworld.spaf.Models;
+using realworld.spaf.Models.Request;
 using realworld.spaf.Models.Response;
 using realworld.spaf.Services.impl;
 
@@ -42,6 +43,29 @@ namespace realworld.spaf.Services
         /// <param name="slug"></param>
         /// <returns></returns>
         Task<SingleArticleResponse> UnFavorite(string slug);
+
+        /// <summary>
+        /// Create a new Article
+        /// </summary>
+        /// <param name="newArticle"></param>
+        /// <returns></returns>
+        Task<SingleArticleResponse> Create(NewArticleRequest newArticle);
+        
+        /// <summary>
+        /// Get comments for article
+        /// </summary>
+        /// <param name="slug"></param>
+        /// <returns></returns>
+        Task<CommentsResponse> GetArticleComments(string slug);
+
+        /// <summary>
+        /// Add a comment to a article
+        /// </summary>
+        /// <param name="slug"></param>
+        /// <param name="comment"></param>
+        /// <returns></returns>
+        Task<SingleCommentResponse> AddComment(string slug, string comment);
+        
 
     }
 }

@@ -69,7 +69,7 @@ namespace realworld.spaf.Services.impl
                 this._repository.SaveToken(loginResponse.User.Token);
                 this._messenger.Send((IUserService)this,SpafApp.Messages.LoginDone);
             }
-            catch (PromiseException e)
+            catch (PromiseException )
             {
                 this._repository.DeleteToken();
                 this.LoggedUser = null;

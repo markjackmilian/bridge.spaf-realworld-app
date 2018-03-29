@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Bridge.jQuery2;
 using Newtonsoft.Json;
 using realworld.spaf.Models;
+using realworld.spaf.Models.Request;
 using realworld.spaf.Models.Response;
 
 namespace realworld.spaf.Services.impl
@@ -79,6 +80,49 @@ namespace realworld.spaf.Services.impl
             };
             
             return base.MakeAuthorizedCall<SingleArticleResponse>(options);
+        }
+
+        public Task<SingleArticleResponse> Create(NewArticleRequest newArticle)
+        {
+            var options = new AjaxOptions
+            {
+                Url = $"{this._settings.ApiUri}/articles",
+                Type = "POST",
+                DataType = "json",
+                ContentType = "application/json",
+                Data = JsonConvert.SerializeObject(newArticle)
+            };
+            
+            return base.MakeAuthorizedCall<SingleArticleResponse>(options);
+        }
+
+        public Task<CommentsResponse> GetArticleComments(string slug)
+        {
+            var options = new AjaxOptions
+            {
+                Url = $"{this._settings.ApiUri}/articles/{slug}/comments",
+                Type = "GET",
+                DataType = "json"
+            };
+            
+            return base.MakeCall<CommentsResponse>(options);
+        }
+
+        public Task<SingleCommentResponse> AddComment(string slug, string comment)
+        {
+            var options = new AjaxOptions
+            {
+                Url = $"{this._settings.ApiUri}/articles/{slug}/comments",
+                Type = "POST",
+                DataType = "json",
+                ContentType = "application/json",
+                Data = JsonConvert.SerializeObject(new Comment
+                {
+                    Body = comment
+                })
+            };
+            
+            return base.MakeAuthorizedCall<SingleCommentResponse>(options);
         }
     }
     

@@ -21,7 +21,6 @@ namespace realworld.spaf.ViewModels
         private readonly IArticleResources _articleResources;
         private readonly IUserService _userService;
         private readonly INavigator _navigator;
-        private readonly ICommentResources _commentResources;
         private readonly IProfileResources _profileResources;
 
         public Article Article { get; set; }
@@ -32,12 +31,11 @@ namespace realworld.spaf.ViewModels
         public User LoggedUser => this._userService.LoggedUser;
 
         public ArticleViewModel(IArticleResources articleResources, IUserService userService, 
-            INavigator navigator, ICommentResources commentResources, IProfileResources profileResources)
+            INavigator navigator, IProfileResources profileResources)
         {
             _articleResources = articleResources;
             _userService = userService;
             _navigator = navigator;
-            _commentResources = commentResources;
             _profileResources = profileResources;
 
             this.Article = new Article();
@@ -69,7 +67,7 @@ namespace realworld.spaf.ViewModels
         {
             if (!this.IsLogged) return;
             
-            var commentResponse = await this._commentResources.AddComment(this.Article.Slug, this.Comment.Self());
+            var commentResponse = await this._articleResources.AddComment(this.Article.Slug, this.Comment.Self());
             this.Comment.Self(string.Empty);
             this.Comments.push(commentResponse.Comment);
         }
@@ -99,7 +97,7 @@ namespace realworld.spaf.ViewModels
         /// <returns></returns>
         private async Task LoadComments(string slug)
         {
-            var comment = await this._commentResources.GetArticleComments(slug);
+            var comment = await this._articleResources.GetArticleComments(slug);
             this.Comments.push(comment.Comments);
         }
 

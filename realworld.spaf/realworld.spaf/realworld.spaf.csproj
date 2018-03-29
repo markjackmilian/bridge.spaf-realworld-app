@@ -82,7 +82,9 @@
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\NewArticle.cs" />
     <Compile Include="Models\Profile.cs" />
+    <Compile Include="Models\Request\NewArticleRequest.cs" />
     <Compile Include="Models\Request\SettingsRequest.cs" />
     <Compile Include="Models\Request\UserRequest.cs" />
     <Compile Include="Models\Request\SignRequest.cs" />
@@ -99,11 +101,9 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IArticleResources.cs" />
-    <Compile Include="Services\ICommentResources.cs" />
     <Compile Include="Services\IFeedResources.cs" />
     <Compile Include="Services\impl\ArticleResources.cs" />
     <Compile Include="Services\impl\AuthorizedResourceBase.cs" />
-    <Compile Include="Services\impl\CommentResources.cs" />
     <Compile Include="Services\impl\FeedResources.cs" />
     <Compile Include="Services\impl\LocalStorageRepository.cs" />
     <Compile Include="Services\impl\ProfileResources.cs" />
@@ -120,6 +120,7 @@
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="SpafApp.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />
+    <Compile Include="ViewModels\EditArticleViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

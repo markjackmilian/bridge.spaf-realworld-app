@@ -52,7 +52,6 @@ namespace realworld.spaf.Classes
                     return "Forbidden";
                 case 404:
                     return "Not Found";
-                    break;
                 case 422:
                     return "Validation Error";
                 default:

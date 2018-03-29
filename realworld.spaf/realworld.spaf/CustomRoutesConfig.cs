@@ -56,10 +56,10 @@ namespace Bridge.Spaf
                 },
                 new PageDescriptor
                 {
-                    CanBeDirectLoad = ()=>true,
+                    CanBeDirectLoad = ()=>false,
                     HtmlLocation = ()=>"pages/editArticle.html", // yout html location
                     Key = SpafApp.EditArticleId,
-                    //PageController = () => SpafApp.Container.Resolve<HomeViewModel>()
+                    PageController = () => SpafApp.Container.Resolve<EditArticleViewModel>()
                 },
                 new PageDescriptor
                 {

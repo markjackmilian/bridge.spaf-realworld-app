@@ -7,6 +7,7 @@ using Bridge.Html5;
 using Bridge.Messenger;
 using Bridge.Navigation;
 using Bridge.Spaf;
+using Bridge.Spaf.Attributes;
 using realworld.spaf.Classes;
 using realworld.spaf.Models;
 using realworld.spaf.Models.Response;
@@ -17,6 +18,7 @@ using static Retyped.knockout;
 
 namespace realworld.spaf.ViewModels
 {
+    [SingleInstance]
     class HomeViewModel : LoadableViewModel
     {
         protected override string ElementId() => SpafApp.HomeId;
@@ -76,6 +78,7 @@ namespace realworld.spaf.ViewModels
             await Task.WhenAll(articlesTask,loadTagsTask);
             this.RefreshPaginator(articlesTask.Result);
         }
+
 
         #region KNOCKOUT METHODS
 
