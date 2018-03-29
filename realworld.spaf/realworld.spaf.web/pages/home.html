@@ -42,7 +42,7 @@
                             <a href="javascript:void(0);" class="author" data-bind="text:Author.Username, click: function(data) { $parent.GoToUser(data)}"></a>
                             <span class="date" data-bind="text: Create"></span>
                         </div>
-                        <button class="btn btn-outline-primary btn-sm pull-xs-right" data-bind="click: function(data) { $parent.AddToFavourite(data)}">
+                        <button class="btn btn-sm pull-xs-right" data-bind="click: function(data) { $parent.AddToFavourite(data)}, css:{'btn-primary': Favorited,'btn-outline-primary': Favorited == false }">
                             <i class="ion-heart"></i> <!--ko text:FavoritesCount--><!--/ko-->
                         </button>
                     </div>

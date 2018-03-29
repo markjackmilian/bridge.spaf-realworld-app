@@ -28,6 +28,20 @@ namespace realworld.spaf.Services
         /// <param name="slug"></param>
         /// <returns></returns>
         Task<SingleArticleResponse> GetArticle(string slug);
-       
+
+        /// <summary>
+        /// Favourite article
+        /// </summary>
+        /// <param name="slug"></param>
+        /// <returns></returns>
+        Task<SingleArticleResponse> Favorite(string slug);
+        
+        /// <summary>
+        /// Unfavourite article
+        /// </summary>
+        /// <param name="slug"></param>
+        /// <returns></returns>
+        Task<SingleArticleResponse> UnFavorite(string slug);
+
     }
 }

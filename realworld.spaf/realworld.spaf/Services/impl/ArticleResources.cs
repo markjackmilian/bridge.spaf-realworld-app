@@ -8,11 +8,11 @@ using realworld.spaf.Models.Response;
 
 namespace realworld.spaf.Services.impl
 {
-    class ArticleResources : ResourceBase, IArticleResources
+    class ArticleResources : AuthorizedResourceBase, IArticleResources
     {
         private readonly ISettings _settings;
 
-        public ArticleResources(ISettings settings)
+        public ArticleResources(ISettings settings, IUserService userService) : base(userService)
         {
             _settings = settings;
         }
@@ -26,7 +26,9 @@ namespace realworld.spaf.Services.impl
                 DataType = "json",
             };
 
-            return base.MakeCall<ArticleResponse>(options);
+            return this.UserService.IsLogged
+                ? base.MakeAuthorizedCall<ArticleResponse>(options)
+                : this.MakeCall<ArticleResponse>(options);
         }
 
         public Task<TagsResponse> GetTags()
@@ -52,7 +54,32 @@ namespace realworld.spaf.Services.impl
             
             return base.MakeCall<SingleArticleResponse>(options);
         }
-       
+
+        public Task<SingleArticleResponse> Favorite(string slug)
+        {
+            var options = new AjaxOptions
+            {
+                Url = $"{this._settings.ApiUri}/articles/{slug}/favorite",
+                Type = "POST",
+                DataType = "json",
+                ContentType = "application/json"
+            };
+            
+            return base.MakeAuthorizedCall<SingleArticleResponse>(options);
+        }
+
+        public Task<SingleArticleResponse> UnFavorite(string slug)
+        {
+            var options = new AjaxOptions
+            {
+                Url = $"{this._settings.ApiUri}/articles/{slug}/favorite",
+                Type = "DELETE",
+                DataType = "json",
+                ContentType = "application/json"
+            };
+            
+            return base.MakeAuthorizedCall<SingleArticleResponse>(options);
+        }
     }
     
 }

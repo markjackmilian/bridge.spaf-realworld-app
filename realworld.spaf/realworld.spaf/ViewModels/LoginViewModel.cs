@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Bridge.Navigation;
 using Bridge.Spaf;
@@ -16,6 +17,7 @@ namespace realworld.spaf.ViewModels
 
         public KnockoutObservable<string> Email { get; set; }
         public KnockoutObservable<string> Password { get; set; }
+        public KnockoutObservable<bool> IsBusy { get; set; }
         public KnockoutObservableArray<string> Errors { get; set; }
 
         public LoginViewModel(INavigator navigator, IUserService userService)
@@ -25,6 +27,7 @@ namespace realworld.spaf.ViewModels
 
             this.Email = ko.observable.Self<string>();
             this.Password = ko.observable.Self<string>();
+            this.IsBusy = ko.observable.Self<bool>();
             this.Errors = ko.observableArray.Self<string>();
         }
 
@@ -33,15 +36,19 @@ namespace realworld.spaf.ViewModels
         {
             try
             {
+                this.IsBusy.Self(true);
                 this.Errors.removeAll();
                 await this._userService.Login(this.Email.Self(), this.Password.Self());
-                this._navigator.Navigate(SpafApp.HomeId);   
+                this._navigator.Navigate(SpafApp.HomeId);
             }
-            
             catch (PromiseException e)
             {
                 var errors = e.GetValidationErrors();
                 this.Errors.push(errors.ToArray());
+            }
+            finally
+            {
+                this.IsBusy.Self(false);
             }
         }
     }

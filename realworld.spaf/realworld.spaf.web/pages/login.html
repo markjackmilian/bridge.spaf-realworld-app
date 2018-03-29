@@ -19,7 +19,7 @@
                     <fieldset class="form-group">
                         <input class="form-control form-control-lg" type="password" placeholder="Password" data-bind="textInput:Password">
                     </fieldset>
-                    <button class="btn btn-lg btn-primary pull-xs-right" data-bind="click:Login">
+                    <button class="btn btn-lg btn-primary pull-xs-right" data-bind="click:Login, attr:{disabled:IsBusy}">
                         Sign in
                     </button>
                 </div>

@@ -60,6 +60,10 @@ namespace realworld.spaf.ViewModels
             this._messenger.Subscribe<IUserService>(this,SpafApp.Messages.LoginDone, service =>
             {
                 this.IsLogged.Self(true);
+                
+                // reload articles for see favorites
+                var articlesTask = this.LoadArticles(ArticleRequestBuilder.Default().WithLimit(this._settings.ArticleInPage)); // load article task
+                this.RefreshPaginator(articlesTask.Result);
             });
         }
 
@@ -105,7 +109,11 @@ namespace realworld.spaf.ViewModels
         public async Task AddToFavourite(Article article)
         {
             if (!this.IsLogged.Self()) return;
+
+            var singleArticle = article.Favorited ? await this._resources.UnFavorite(article.Slug) : 
+                await this._resources.Favorite(article.Slug);
             
+            this.Articles.replace(article,singleArticle.Article);
         }
 
         /// <summary>
