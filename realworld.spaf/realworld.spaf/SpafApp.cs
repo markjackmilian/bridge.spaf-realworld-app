@@ -44,6 +44,7 @@ namespace Bridge.Spaf
             Container.Register<IFeedResources,FeedResources>();
             Container.Register<ICommentResources,CommentResources>();
             Container.Register<ISettingsResources,SettingsResources>();
+            Container.Register<IProfileResources,ProfileResources>();
 
         }
 

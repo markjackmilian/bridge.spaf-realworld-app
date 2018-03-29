@@ -82,6 +82,7 @@
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Request\SettingsRequest.cs" />
     <Compile Include="Models\Request\UserRequest.cs" />
     <Compile Include="Models\Request\SignRequest.cs" />
@@ -103,10 +104,12 @@
     <Compile Include="Services\impl\AuthorizedResourceBase.cs" />
     <Compile Include="Services\impl\CommentResources.cs" />
     <Compile Include="Services\impl\FeedResources.cs" />
+    <Compile Include="Services\impl\ProfileResources.cs" />
     <Compile Include="Services\impl\ResourceBase.cs" />
     <Compile Include="Services\impl\SettingsResources.cs" />
     <Compile Include="Services\impl\UserResources.cs" />
     <Compile Include="Services\impl\UserService.cs" />
+    <Compile Include="Services\IProfileResources.cs" />
     <Compile Include="Services\ISettings.cs" />
     <Compile Include="Services\impl\Settings.cs" />
     <Compile Include="Services\ISettingsResources.cs" />
