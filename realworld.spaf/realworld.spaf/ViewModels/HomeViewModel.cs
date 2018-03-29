@@ -18,7 +18,6 @@ using static Retyped.knockout;
 
 namespace realworld.spaf.ViewModels
 {
-    [SingleInstance]
     class HomeViewModel : LoadableViewModel
     {
         protected override string ElementId() => SpafApp.HomeId;
@@ -79,7 +78,13 @@ namespace realworld.spaf.ViewModels
             this.RefreshPaginator(articlesTask.Result);
         }
 
-       
+        public override void OnLeave()
+        {
+            base.OnLeave();
+            this._messenger.Unsubscribe<UserService>(this, SpafApp.LoginId);
+        }
+
+
         #region KNOCKOUT METHODS
 
         /// <summary>
