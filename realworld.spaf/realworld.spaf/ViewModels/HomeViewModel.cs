@@ -59,7 +59,7 @@ namespace realworld.spaf.ViewModels
             this.IsLogged = ko.observable.Self<bool>(this._userService.IsLogged);
             this.ActiveTabIndex = ko.observable.Self<int>(-1);
             
-            this._messenger.Subscribe<IUserService>(this,SpafApp.Messages.LoginDone, service =>
+            this._messenger.Subscribe<UserService>(this,SpafApp.Messages.LoginDone, service =>
             {
                 this.IsLogged.Self(true);
                 
@@ -79,7 +79,7 @@ namespace realworld.spaf.ViewModels
             this.RefreshPaginator(articlesTask.Result);
         }
 
-
+       
         #region KNOCKOUT METHODS
 
         /// <summary>

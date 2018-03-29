@@ -37,7 +37,7 @@ namespace realworld.spaf.Services.impl
 
             this.LoggedUser = loginResponse.User;
             this._repository.SaveToken(loginResponse.User.Token);
-            this._messenger.Send((IUserService)this,SpafApp.Messages.LoginDone);
+            this._messenger.Send(this,SpafApp.Messages.LoginDone);
         }
 
         public async Task Register(string username, string mail, string password)
@@ -54,7 +54,7 @@ namespace realworld.spaf.Services.impl
             
             this.LoggedUser = loginResponse.User;
             this._repository.SaveToken(loginResponse.User.Token);
-            this._messenger.Send((IUserService)this,SpafApp.Messages.LoginDone);
+            this._messenger.Send(this,SpafApp.Messages.LoginDone);
         }
 
         public async Task TryAutoLoginWithStoredToken()
@@ -67,7 +67,7 @@ namespace realworld.spaf.Services.impl
                 var loginResponse = await this._userResources.GetCurrentUser(storedToken);
                 this.LoggedUser = loginResponse.User;
                 this._repository.SaveToken(loginResponse.User.Token);
-                this._messenger.Send((IUserService)this,SpafApp.Messages.LoginDone);
+                this._messenger.Send(this,SpafApp.Messages.LoginDone);
             }
             catch (PromiseException )
             {
