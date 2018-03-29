@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Bridge.jQuery2;
-using Newtonsoft.Json;
-using realworld.spaf.Models;
+using realworld.spaf.Models.Response;
 
 namespace realworld.spaf.Services.impl
 {
@@ -18,17 +13,17 @@ namespace realworld.spaf.Services.impl
             this._settings = settings;
         }
 
-        public Task<Profile> Get(string username)
+        public Task<ProfileResponse> Get(string username)
         {
             var options = new AjaxOptions
             {
-                Url = $"{this._settings.ApiUri}/profiles/:{username.ToLower()}",
+                Url = $"{this._settings.ApiUri}/profiles/{username}",
                 Type = "GET",
                 DataType = "json",
                 ContentType = "application/json",
             };
 
-            return base.MakeAuthorizedCall<Profile>(options);
+            return base.MakeAuthorizedCall<ProfileResponse>(options);
         }
     }
 }

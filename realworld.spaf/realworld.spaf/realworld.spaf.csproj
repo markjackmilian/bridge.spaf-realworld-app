@@ -89,6 +89,7 @@
     <Compile Include="Models\Response\ArticleResponse.cs" />
     <Compile Include="Models\Response\CommentsResponse.cs" />
     <Compile Include="Models\Response\ErrorResponse.cs" />
+    <Compile Include="Models\Response\ProfileResponse.cs" />
     <Compile Include="Models\Response\SettingsResponse.cs" />
     <Compile Include="Models\Response\SignResponse.cs" />
     <Compile Include="Models\Paginator.cs" />

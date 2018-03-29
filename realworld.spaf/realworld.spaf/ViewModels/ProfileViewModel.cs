@@ -1,5 +1,6 @@
 ﻿using Bridge.Spaf;
 using realworld.spaf.Models;
+using realworld.spaf.Models.Response;
 using realworld.spaf.Services;
 using System.Collections.Generic;
 using static Retyped.knockout;
@@ -18,13 +19,15 @@ namespace realworld.spaf.ViewModels
         {
             this.ProfileModel = new ProfileModel();
             this._profileResource = profileResource;
+
+            this.PopulateProfile();
         }
 
-        public async override void OnLoad(Dictionary<string, object> parameters)
+        public async void PopulateProfile()
         {
             var loggedUser = SpafApp.Container.Resolve<IUserService>().LoggedUser;
-            var profile = await _profileResource.Get(loggedUser.Username);
-            this.ProfileModel.MapMe(profile);
+            var profileResponse = await this._profileResource.Get(loggedUser.Username);
+            this.ProfileModel.MapMe(profileResponse);
         }
 
     }
@@ -44,12 +47,12 @@ namespace realworld.spaf.ViewModels
             this.Following = ko.observable.Self<bool>();
         }
 
-        public void MapMe (Profile profile)
+        public void MapMe (ProfileResponse profileResponse)
         {
-            this.ImageUri.Self(profile.Image);
-            this.Username.Self(profile.Username);
-            this.Biography.Self(profile.Bio);
-            this.Following.Self(profile.Following);
+            this.ImageUri.Self(profileResponse.Profile.Image);
+            this.Username.Self(profileResponse.Profile.Username);
+            this.Biography.Self(profileResponse.Profile.Bio);
+            this.Following.Self(profileResponse.Profile.Following);
         }
     }
 }
