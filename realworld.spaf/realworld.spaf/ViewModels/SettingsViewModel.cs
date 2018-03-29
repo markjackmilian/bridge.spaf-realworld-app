@@ -69,7 +69,7 @@ namespace realworld.spaf.ViewModels
             }
             catch (PromiseException e)
             {
-                var errors = e.GetErrorList();
+                var errors = e.GetValidationErrors();
                 this.Errors.push(errors.ToArray());
             }
         }
