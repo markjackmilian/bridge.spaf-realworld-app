@@ -26,6 +26,19 @@ namespace realworld.spaf.Services.impl
             return base.MakeAuthorizedCall<FollowResponse>(options);
         }
 
+        public Task<FollowResponse> UnFollow(string username)
+        {
+            var options = new AjaxOptions
+            {
+                Url = $"{this._settings.ApiUri}/profiles/{username}/follow",
+                Type = "DELETE",
+                DataType = "json",
+                ContentType = "application/json"
+            };
+            
+            return base.MakeAuthorizedCall<FollowResponse>(options);
+        }
+
         public Task<ProfileResponse> Get(string username)
         {
             var options = new AjaxOptions
@@ -36,7 +49,7 @@ namespace realworld.spaf.Services.impl
                 ContentType = "application/json",
             };
 
-            return base.MakeAuthorizedCall<ProfileResponse>(options);
+            return base.MakeCall<ProfileResponse>(options);
         }
     }
 }

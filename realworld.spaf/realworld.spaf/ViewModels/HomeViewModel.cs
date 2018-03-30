@@ -66,8 +66,6 @@ namespace realworld.spaf.ViewModels
                 // reload articles for see favorites
                 var articlesTask = this.LoadArticles(ArticleRequestBuilder.Default().WithLimit(this._settings.ArticleInPage)); // load article task
                 this.RefreshPaginator(articlesTask.Result);
-                
-                Global.Alert("loggato");
             });
         }
 
@@ -96,7 +94,10 @@ namespace realworld.spaf.ViewModels
         /// <param name="article"></param>
         public void GoToUser(Article article)
         {
-            Global.Alert($"Go to user {article.Author.Username}");
+            this._navigator.Navigate(SpafApp.ProfileId, new Dictionary<string, object>()
+            {
+                {"username",article.Author.Username}
+            });
         }
         
         /// <summary>

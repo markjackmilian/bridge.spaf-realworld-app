@@ -13,6 +13,13 @@ namespace realworld.spaf.Services
         /// <returns></returns>
         Task<FollowResponse> Follow(string username);
         
+        /// <summary>
+        /// Start follow user
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        Task<FollowResponse> UnFollow(string username);
+        
         
         /// <summary>
         /// Get User Profile

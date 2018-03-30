@@ -8,11 +8,21 @@
                     <img data-bind="attr: {src: ProfileModel.Image}" class="user-img" />
                     <h4 data-bind="text: ProfileModel.Username"></h4>
                     <p data-bind="text: ProfileModel.Bio"></p>
-                    <button class="btn btn-sm btn-outline-secondary action-btn">
+
+
+                    <!-- ko if: IsLogged -->
+
+                    <button class="btn btn-sm btn-outline-secondary action-btn" data-bind="click:Follow, if:IsLogged">
                         <i class="ion-plus-round"></i>
                         &nbsp;
-                        Follow <span data-bind="text: ProfileModel.Username"></span>
+                        <!-- ko text: ProfileModel.Following() == true ? 'Unfollow' : 'Follow' --><!-- /ko -->
+
+                        <span data-bind="text: ProfileModel.Username"></span>
                     </button>
+                    
+                    <!-- /ko -->
+
+                  
                 </div>
 
             </div>
@@ -26,54 +36,35 @@
                 <div class="articles-toggle">
                     <ul class="nav nav-pills outline-active">
                         <li class="nav-item">
-                            <a class="nav-link active" href="">My Articles</a>
+                            <a class="nav-link active" href="javascript:void(0);" data-bind="click:ShowArticles, css: {active: ActiveTabIndex() == 0}">My Articles</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Favorited Articles</a>
+                            <a class="nav-link" href="javascript:void(0);" data-bind="click:ShowFavourites, css: {active: ActiveTabIndex() == 1}">Favorited Articles</a>
                         </li>
                     </ul>
                 </div>
 
+                <!-- ko foreach: ProfileModel.Articles -->
                 <div class="article-preview">
                     <div class="article-meta">
-                        <a href=""><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
+                        <a href="javascript:void (0);" data-bind="click: function(data) { $parent.GoToUser(data)}"><img data-bind="attr:{src: Author.Image}" /></a>
                         <div class="info">
-                            <a href="" class="author">Eric Simons</a>
-                            <span class="date">January 20th</span>
+                            <a href="javascript:void(0);" class="author" data-bind="text:Author.Username, click: function(data) { $parent.GoToUser(data)}"></a>
+                            <span class="date" data-bind="text: Create"></span>
                         </div>
-                        <button class="btn btn-outline-primary btn-sm pull-xs-right">
-                            <i class="ion-heart"></i> 29
+                        <button class="btn btn-sm pull-xs-right" data-bind="click: function(data) { $parent.AddToFavourite(data)}, css:{'btn-primary': Favorited,'btn-outline-primary': Favorited == false }">
+                            <i class="ion-heart"></i> <!--ko text:FavoritesCount--><!--/ko-->
                         </button>
                     </div>
-                    <a href="" class="preview-link">
-                        <h1>How to build webapps that scale</h1>
-                        <p>This is the description for the post.</p>
+                    <a href="javascript:void(0);" class="preview-link" data-bind="click: function(data) { $parent.GoToArticle(data)}">
+                        <h1 data-bind="text:Title"></h1>
+                        <p data-bind="text:Description"></p>
                         <span>Read more...</span>
                     </a>
                 </div>
+                <!-- /ko -->
 
-                <div class="article-preview">
-                    <div class="article-meta">
-                        <a href=""><img src="http://i.imgur.com/N4VcUeJ.jpg" /></a>
-                        <div class="info">
-                            <a href="" class="author">Albert Pai</a>
-                            <span class="date">January 20th</span>
-                        </div>
-                        <button class="btn btn-outline-primary btn-sm pull-xs-right">
-                            <i class="ion-heart"></i> 32
-                        </button>
-                    </div>
-                    <a href="" class="preview-link">
-                        <h1>The song you won't ever stop singing. No matter how hard you try.</h1>
-                        <p>This is the description for the post.</p>
-                        <span>Read more...</span>
-                        <ul class="tag-list">
-                            <li class="tag-default tag-pill tag-outline">Music</li>
-                            <li class="tag-default tag-pill tag-outline">Song</li>
-                        </ul>
-                    </a>
-                </div>
-
+               
 
             </div>
 

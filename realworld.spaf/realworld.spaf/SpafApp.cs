@@ -64,8 +64,6 @@ namespace Bridge.Spaf
         public static string EditArticleId => "editArticle";
         public static string ArticleId => "article";
 
-        
-
         #endregion
 
         #region MESSAGES
