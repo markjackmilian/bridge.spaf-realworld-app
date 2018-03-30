@@ -34,24 +34,24 @@ namespace realworld.spaf.ViewModels
 
     public class ProfileModel
     {
-        public KnockoutObservable<string> ImageUri { get; set; }
+        public KnockoutObservable<string> Image { get; set; }
         public KnockoutObservable<string> Username { get; set; }
-        public KnockoutObservable<string> Biography { get; set; }
+        public KnockoutObservable<string> Bio { get; set; }
         public KnockoutObservable<bool> Following { get; set; }
 
         public ProfileModel()
         {
-            this.ImageUri = ko.observable.Self<string>();
+            this.Image = ko.observable.Self<string>();
             this.Username = ko.observable.Self<string>();
-            this.Biography = ko.observable.Self<string>();
+            this.Bio = ko.observable.Self<string>();
             this.Following = ko.observable.Self<bool>();
         }
 
         public void MapMe (ProfileResponse profileResponse)
         {
-            this.ImageUri.Self(profileResponse.Profile.Image);
+            this.Image.Self(profileResponse.Profile.Image);
             this.Username.Self(profileResponse.Profile.Username);
-            this.Biography.Self(profileResponse.Profile.Bio);
+            this.Bio.Self(profileResponse.Profile.Bio);
             this.Following.Self(profileResponse.Profile.Following);
         }
     }
