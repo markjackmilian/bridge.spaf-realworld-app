@@ -1,5 +1,6 @@
 ﻿using Bridge.Spaf;
 using realworld.spaf.Models;
+using realworld.spaf.Models.Response;
 using realworld.spaf.Services;
 using System.Collections.Generic;
 using static Retyped.knockout;
@@ -10,46 +11,48 @@ namespace realworld.spaf.ViewModels
     {
         protected override string ElementId() => SpafApp.ProfileId;
 
-        private readonly IUserService _userService;
+        private readonly IProfileResources _profileResource;
 
-        public UserModel User { get; set; }
+        public ProfileModel ProfileModel { get; set; }
 
-        public ProfileViewModel(IUserService userService)
+        public ProfileViewModel(IProfileResources profileResource)
         {
-            this.User = new UserModel();
-            this._userService = userService;
+            this.ProfileModel = new ProfileModel();
+            this._profileResource = profileResource;
+
+            this.PopulateProfile();
         }
 
-        public override void OnLoad(Dictionary<string, object> parameters)
+        public async void PopulateProfile()
         {
-            this.User.MapMe(this._userService.LoggedUser);
-
-            base.OnLoad(parameters);
+            var loggedUser = SpafApp.Container.Resolve<IUserService>().LoggedUser;
+            var profileResponse = await this._profileResource.Get(loggedUser.Username);
+            this.ProfileModel.MapMe(profileResponse);
         }
 
     }
 
-    public class UserModel
+    public class ProfileModel
     {
-        public KnockoutObservable<string> ImageUri { get; set; }
+        public KnockoutObservable<string> Image { get; set; }
         public KnockoutObservable<string> Username { get; set; }
-        public KnockoutObservable<string> Biography { get; set; }
-        public KnockoutObservable<string> Email { get; set; }
+        public KnockoutObservable<string> Bio { get; set; }
+        public KnockoutObservable<bool> Following { get; set; }
 
-        public UserModel()
+        public ProfileModel()
         {
-            this.ImageUri = ko.observable.Self<string>();
+            this.Image = ko.observable.Self<string>();
             this.Username = ko.observable.Self<string>();
-            this.Biography = ko.observable.Self<string>();
-            this.Email = ko.observable.Self<string>();
+            this.Bio = ko.observable.Self<string>();
+            this.Following = ko.observable.Self<bool>();
         }
 
-        public void MapMe (User user)
+        public void MapMe (ProfileResponse profileResponse)
         {
-            this.ImageUri.Self(user.Image);
-            this.Username.Self(user.Username);
-            this.Biography.Self(user.Bio);
-            this.Email.Self(user.Email);
+            this.Image.Self(profileResponse.Profile.Image);
+            this.Username.Self(profileResponse.Profile.Username);
+            this.Bio.Self(profileResponse.Profile.Bio);
+            this.Following.Self(profileResponse.Profile.Following);
         }
     }
 }
