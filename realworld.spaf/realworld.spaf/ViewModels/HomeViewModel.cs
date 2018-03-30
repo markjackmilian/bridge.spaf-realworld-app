@@ -39,6 +39,7 @@ namespace realworld.spaf.ViewModels
         public KnockoutObservable<int> ActiveTabIndex; // tab active index
         public KnockoutObservableArray<string> Tabs;
         public KnockoutObservable<bool> IsLogged;
+        
         #endregion
       
 
@@ -65,6 +66,8 @@ namespace realworld.spaf.ViewModels
                 // reload articles for see favorites
                 var articlesTask = this.LoadArticles(ArticleRequestBuilder.Default().WithLimit(this._settings.ArticleInPage)); // load article task
                 this.RefreshPaginator(articlesTask.Result);
+                
+                Global.Alert("loggato");
             });
         }
 

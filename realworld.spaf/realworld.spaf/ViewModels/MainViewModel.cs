@@ -3,6 +3,7 @@ using Bridge.Messenger;
 using Bridge.Spaf;
 using Bridge.Spaf.Attributes;
 using realworld.spaf.Services;
+using realworld.spaf.Services.impl;
 using static Retyped.knockout;
 
 namespace realworld.spaf.ViewModels
@@ -22,7 +23,7 @@ namespace realworld.spaf.ViewModels
 
             this.IsLogged = ko.observable.Self<bool>(false);
             
-            this._messenger.Subscribe<IUserService>(this,SpafApp.Messages.LoginDone, service =>
+            this._messenger.Subscribe<UserService>(this,SpafApp.Messages.LoginDone, service =>
                 {
                     this.IsLogged.Self(true);
                 });
