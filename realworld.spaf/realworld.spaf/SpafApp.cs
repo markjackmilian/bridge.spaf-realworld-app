@@ -18,6 +18,10 @@ namespace Bridge.Spaf
 
         public static void Main()
         {
+            #if !DEBUG
+            NavigationUtility.VirtualDirectory = "realworld.spaf";
+            #endif
+
             Container = new BridgeIoc();
             ContainerConfig(); // config container
             var mainVm = Container.Resolve<MainViewModel>();
