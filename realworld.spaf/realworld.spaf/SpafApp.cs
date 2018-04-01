@@ -19,7 +19,7 @@ namespace Bridge.Spaf
         public static void Main()
         {
             #if !DEBUG
-            NavigationUtility.VirtualDirectory = "realworld.spaf";
+            NavigationUtility.VirtualDirectory = "realworld.spaf"; //  virtual dit for release environment
             #endif
 
             Container = new BridgeIoc();

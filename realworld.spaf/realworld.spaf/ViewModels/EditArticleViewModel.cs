@@ -16,7 +16,7 @@ namespace realworld.spaf.ViewModels
     {
         private readonly IArticleResources _articleResources;
         private readonly INavigator _navigator;
-        protected override string ElementId() => SpafApp.EditArticleId;
+        public override string ElementId() => SpafApp.EditArticleId;
 
         public KnockoutObservable<string> Title { get; set; }
         public KnockoutObservable<string> Body { get; set; }

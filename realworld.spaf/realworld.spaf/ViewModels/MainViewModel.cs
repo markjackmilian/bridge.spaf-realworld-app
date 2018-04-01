@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Bridge.Messenger;
+using Bridge.Navigation;
 using Bridge.Spaf;
 using Bridge.Spaf.Attributes;
 using realworld.spaf.Services;
@@ -15,19 +17,28 @@ namespace realworld.spaf.ViewModels
         private readonly IUserService _userService;
 
         public KnockoutObservable<bool> IsLogged { get; set; }
+        public KnockoutObservable<string> ActualPageId { get; set; }
 
-        public MainViewModel(IMessenger messenger, IUserService userService)
+        public MainViewModel(IMessenger messenger, IUserService userService,INavigator navigator)
         {
             _messenger = messenger;
             _userService = userService;
 
             this.IsLogged = ko.observable.Self<bool>(false);
+            this.ActualPageId = ko.observable.Self<string>(SpafApp.HomeId);
             
+            // subscribe to logindone message
             this._messenger.Subscribe<UserService>(this,SpafApp.Messages.LoginDone, service =>
                 {
                     this.IsLogged.Self(true);
                 });
-            
+
+            navigator.OnNavigated += (sender, loadable) =>
+            {
+                var vm = (LoadableViewModel) loadable;
+                this.ActualPageId.Self(vm.ElementId());
+            };
+
         }
         
 
@@ -41,4 +52,6 @@ namespace realworld.spaf.ViewModels
             this._userService.TryAutoLoginWithStoredToken();
         }
     }
+
+   
 }

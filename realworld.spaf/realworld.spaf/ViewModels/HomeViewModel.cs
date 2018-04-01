@@ -20,7 +20,7 @@ namespace realworld.spaf.ViewModels
 {
     class HomeViewModel : LoadableViewModel
     {
-        protected override string ElementId() => SpafApp.HomeId;
+        public override string ElementId() => SpafApp.HomeId;
 
         private string _tagFilter = null; // tag filter
         

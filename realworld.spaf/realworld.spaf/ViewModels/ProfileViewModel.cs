@@ -14,7 +14,7 @@ namespace realworld.spaf.ViewModels
 {
     class ProfileViewModel : LoadableViewModel
     {
-        protected override string ElementId() => SpafApp.ProfileId;
+        public override string ElementId() => SpafApp.ProfileId;
 
         private readonly IProfileResources _profileResource;
         private readonly IUserService _userService;

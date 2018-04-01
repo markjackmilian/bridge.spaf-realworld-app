@@ -16,7 +16,7 @@ namespace realworld.spaf.ViewModels
 {
     class ArticleViewModel : LoadableViewModel
     {
-        protected override string ElementId() => SpafApp.ArticleId;
+        public override string ElementId() => SpafApp.ArticleId;
 
         private readonly IArticleResources _articleResources;
         private readonly IUserService _userService;

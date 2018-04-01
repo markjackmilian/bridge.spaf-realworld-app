@@ -17,7 +17,7 @@
         <ul class="nav navbar-nav pull-xs-right">
             <li class="nav-item">
                 <!-- Add "active" class when you're on that page" -->
-                <a class="nav-link active" href="spaf:home">Home</a>
+                <a class="nav-link" href="spaf:home" data-bind="css: {active: ActualPageId() == 'home'}">Home</a>
             </li>
             <!--<li class="nav-item">-->
                 <!--<a class="nav-link" href="">-->
@@ -25,25 +25,25 @@
                 <!--</a>-->
             <!--</li>-->
             
-            <li class="nav-item" data-bind="visible: IsLogged">
+            <li class="nav-item" data-bind="visible: IsLogged, css: {active: ActualPageId() == 'editArticle'">
                 <a class="nav-link" href="spaf:editArticle">
                     <i class="ion-compose"></i>New Post
                 </a>
             </li>
             
-            <li class="nav-item" data-bind="visible: IsLogged">
+            <li class="nav-item" data-bind="visible: IsLogged, css: {active: ActualPageId() == 'settings'">
                 <a class="nav-link" href="spaf:settings">
                     <i class="ion-gear-a"></i>&nbsp;Settings
                 </a>
             </li>
             
-            <li class="nav-item" data-bind="visible: IsLogged">
+            <li class="nav-item" data-bind="visible: IsLogged, css: {active: ActualPageId() == 'profile'">
                 <a class="nav-link" href="spaf:profile">Profile</a>
             </li>
-            <li class="nav-item" data-bind="visible: IsLogged() == false">
+            <li class="nav-item" data-bind="visible: IsLogged() == false, css: {active: ActualPageId() == 'login'}">
                 <a class="nav-link" href="spaf:login">Sign in</a>
             </li>
-            <li class="nav-item" data-bind="visible: IsLogged() == false">
+            <li class="nav-item" data-bind="visible: IsLogged() == false, css: {active: ActualPageId() == 'register'">
                 <a class="nav-link" href="spaf:register">Sign up</a>
             </li>
 

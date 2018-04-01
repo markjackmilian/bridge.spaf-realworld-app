@@ -14,7 +14,7 @@ namespace realworld.spaf.ViewModels
     {
         private readonly INavigator _navigator;
         private readonly IUserService _userService;
-        protected override string ElementId() => SpafApp.RegisterId;
+        public override string ElementId() => SpafApp.RegisterId;
 
         public knockout.KnockoutObservable<string> Username { get; set; }
         public knockout.KnockoutObservable<string> Email { get; set; }

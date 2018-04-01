@@ -13,7 +13,7 @@ namespace realworld.spaf.ViewModels
     {
         private readonly INavigator _navigator;
         private readonly IUserService _userService;
-        protected override string ElementId() => SpafApp.LoginId;
+        public override string ElementId() => SpafApp.LoginId;
 
         public KnockoutObservable<string> Email { get; set; }
         public KnockoutObservable<string> Password { get; set; }

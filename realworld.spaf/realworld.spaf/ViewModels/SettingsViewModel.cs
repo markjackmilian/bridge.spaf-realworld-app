@@ -15,7 +15,7 @@ namespace realworld.spaf.ViewModels
         private readonly ISettingsResources _settingsResources;
         private readonly INavigator _navigator;
 
-        protected override string ElementId() => SpafApp.SettingsId;
+        public override string ElementId() => SpafApp.SettingsId;
 
         public KnockoutObservable<string> ImageUri { get; set; }
         public KnockoutObservable<string> Username { get; set; }
