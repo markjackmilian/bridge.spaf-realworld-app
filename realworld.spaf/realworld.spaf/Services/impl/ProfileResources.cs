@@ -49,7 +49,7 @@ namespace realworld.spaf.Services.impl
                 ContentType = "application/json",
             };
 
-            return base.MakeCall<ProfileResponse>(options);
+            return base.UserService.IsLogged ? base.MakeAuthorizedCall<ProfileResponse>(options) : base.MakeCall<ProfileResponse>(options);
         }
     }
 }
