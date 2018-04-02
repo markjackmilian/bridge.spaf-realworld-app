@@ -32,24 +32,35 @@ namespace realworld.spaf.ViewModels
         }
 
 
-        public async Task Login()
+        public void Login()
         {
-            try
-            {
-                this.IsBusy.Self(true);
-                this.Errors.removeAll();
-                await this._userService.Login(this.Email.Self(), this.Password.Self());
-                this._navigator.Navigate(SpafApp.HomeId);
-            }
-            catch (PromiseException e)
-            {
-                var errors = e.GetValidationErrors();
-                this.Errors.push(errors.ToArray());
-            }
-            finally
+            this.IsBusy.Self(true);
+            this.Errors.removeAll();
+            this._userService.Login(this.Email.Self(), this.Password.Self()).ContinueWith(c =>
             {
                 this.IsBusy.Self(false);
-            }
+
+                if (c.IsFaulted)
+                {
+                    var firstException = c.Exception.InnerExceptions.First();
+
+                    if (firstException is PromiseException)
+                    {
+                        var e = (PromiseException)c.Exception.InnerExceptions.First();
+                        var errors = e.GetValidationErrors();
+                        this.Errors.push(errors.ToArray());
+                    }
+                    else
+                    {
+                        // transient "not completed task" caused by bridge version (in fix)
+                        this._navigator.Navigate(SpafApp.HomeId);
+                    }
+                }
+                else
+                {
+                    this._navigator.Navigate(SpafApp.HomeId);
+                }
+            });
         }
     }
 }
