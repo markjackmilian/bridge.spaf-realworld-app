@@ -16,7 +16,7 @@ namespace Bridge.Spaf
     {
         public static IIoc Container;
 
-        public static void Main()
+        public static async void Main()
         {
             #if !DEBUG
             NavigationUtility.VirtualDirectory = "realworld.spaf"; //  virtual dit for release environment
@@ -25,7 +25,7 @@ namespace Bridge.Spaf
             Container = new BridgeIoc();
             ContainerConfig(); // config container
             var mainVm = Container.Resolve<MainViewModel>();
-            mainVm.Start();
+            await mainVm.Start();
             
             Container.Resolve<INavigator>().InitNavigation(); // init navigation
         }

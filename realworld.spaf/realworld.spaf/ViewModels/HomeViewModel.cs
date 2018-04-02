@@ -59,14 +59,6 @@ namespace realworld.spaf.ViewModels
             this.IsLogged = ko.observable.Self<bool>(this._userService.IsLogged);
             this.ActiveTabIndex = ko.observable.Self<int>(-1);
             
-            this._messenger.Subscribe<UserService>(this,SpafApp.Messages.LoginDone, service =>
-            {
-                this.IsLogged.Self(true);
-                
-                // reload articles for see favorites
-                var articlesTask = this.LoadArticles(ArticleRequestBuilder.Default().WithLimit(this._settings.ArticleInPage)); // load article task
-                this.RefreshPaginator(articlesTask.Result);
-            });
         }
 
         public override async void OnLoad(Dictionary<string, object> parameters)

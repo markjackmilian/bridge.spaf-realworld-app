@@ -46,10 +46,10 @@ namespace realworld.spaf.ViewModels
         /// Apply binding to mainmodel
         /// try auto login
         /// </summary>
-        public void Start()
+        public async Task Start()
         {
             ko.applyBindings(this);
-            this._userService.TryAutoLoginWithStoredToken();
+            await this._userService.TryAutoLoginWithStoredToken();
         }
     }
 
