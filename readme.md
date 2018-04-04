@@ -1,23 +1,24 @@
 # ![RealWorld Example App](logo.png)
 
-> ### [YOUR_FRAMEWORK] codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
+> ### [Bridge.Spaf] codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
 
-### [Demo](https://github.com/gothinkster/realworld)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
+### [Demo](https://markjackmilian.github.io/realworld.spaf#home)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
 
 
-This codebase was created to demonstrate a fully fledged fullstack application built with **[YOUR_FRAMEWORK]** including CRUD operations, authentication, routing, pagination, and more.
+This codebase was created to demonstrate a fully fledged fullstack application built with **[Bridge.Spaf]** including CRUD operations, authentication, routing, pagination, and more.
 
-We've gone to great lengths to adhere to the **[YOUR_FRAMEWORK]** community styleguides & best practices.
+We've gone to great lengths to adhere to the **[Bridge.Spaf]** community styleguides & best practices.
 
 For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
 
 
 # How it works
 
-> Describe the general architecture of your app here
+> Bridge.Spaf allows you to create SPA applications without a single line of Javascript thanks to Bridge.Net.
+> If you like C#, strongly typed languages, IOC, dependency injection, publisher/subscriber, MVVM then this repo is for you.    See [Bridge.Spaf](https://github.com/markjackmilian/Bridge.Spaf) for documentation and startup.
 
 # Getting started
 
-> npm install, npm start, etc.
+> Just Clone this repo, open in Visual studio, build realworld.spaf and run realworld.spaf.web.
 
