@@ -1,0 +1,101 @@
+﻿<div class="article-page" id="article">
+    
+    <div class="banner">
+        <div class="container">
+
+            <h1 data-bind="text: Article.Title" ></h1>
+
+            <div class="article-meta">
+                <a href=""><img data-bind="attr:{src: Article.Author.Image}" /></a>
+                <div class="info">
+                    <a href="" class="author" data-bind="text: Article.Author.Username" ></a>
+                    <span class="date" data-bind="text:Article.Create"></span>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary">
+                    <i class="ion-plus-round"></i>
+                    &nbsp;
+                    Follow <!--ko text:Article.Author.Username--><!--/ko--> <span class="counter"></span>
+                </button>
+                &nbsp;&nbsp;
+                <button class="btn btn-sm btn-outline-primary">
+                    <i class="ion-heart"></i>
+                    &nbsp;
+                    Favorite Post <span class="counter">(<!--ko text:Article.FavoritesCount--><!--/ko-->)</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container page">
+
+        <div class="row article-content">
+            <div class="col-md-12">
+                <p data-bind="text:Article.Body"></p>
+
+                <ul class="tag-list" data-bind="foreach: Article.TagList">
+                    <li class="tag-default tag-pill tag-outline" data-bind="text:$data"></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr />
+
+       
+
+
+        <div class="row">
+
+            <div class="col-xs-12 col-md-8 offset-md-2">
+
+                <!-- ko if: IsLogged == false -->
+                <p>
+                    <a href="spaf:login">Sign in</a> or <a href="spaf:register">sign up</a> to add comments on this article.
+                </p>
+                <!--/ko-->
+
+                <!-- ko if: IsLogged -->
+
+                <form class="card comment-form">
+                    <div class="card-block">
+                        <textarea class="form-control" placeholder="Write a comment..." rows="3" data-bind="textInput:Comment"></textarea>
+                    </div>
+                    <div class="card-footer">
+                        <img data-bind="attr:{src: LoggedUser.Image}" class="comment-author-img" />
+                        <button class="btn btn-sm btn-primary" data-bind="click:AddComment">
+                            Post Comment
+                        </button>
+                    </div>
+                </form>
+
+                <!--/ko-->
+
+
+                <!-- ko foreach: Comments -->
+
+                <div class="card">
+                    <div class="card-block">
+                        <p class="card-text" data-bind="text:Body"></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="" class="comment-author">
+                            <img data-bind="attr:{src: Author.Image}"  class="comment-author-img" />
+                        </a>
+                        &nbsp;
+                        <a href="" class="comment-author" data-bind="text:Author.Username">Jacob Schmidt</a>
+                        <span class="date-posted" data-bind="text:Create"></span>
+                    </div>
+                </div>
+
+                <!--/ko-->
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</div>

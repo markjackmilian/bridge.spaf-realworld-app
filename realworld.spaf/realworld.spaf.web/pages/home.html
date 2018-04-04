@@ -1,0 +1,80 @@
+﻿<div class="home-page" id="home">
+
+    <div class="banner">
+        <div class="container">
+            <h1 class="logo-font">conduit</h1>
+            <p>A place to share your knowledge.</p>
+        </div>
+    </div>
+
+    <div class="container page">
+        <div class="row">
+
+            <div class="col-md-9">
+                <div class="feed-toggle" >
+                    <ul class="nav nav-pills outline-active" >
+
+                        <li class="nav-item" data-bind="if: IsLogged">
+                            <a class="nav-link" href="javascript:void(0);" data-bind="click: ResetTabsForFeed, css: {active: ActiveTabIndex() == -2}">Your Feed</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0);" data-bind="click: ResetTabs, css: {active: ActiveTabIndex() == -1}">Global Feed</a>
+                        </li>
+                        <!-- ko foreach: Tabs -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0);" data-bind="text:$data, css:{active:$index() == $parent.ActiveTabIndex()}, click:function(data) { $parent.ArticlesForTab(data)}"></a>
+                        </li>
+                        <!-- /ko -->
+
+                    </ul>
+                    
+                </div>
+
+                <!-- ko if:Articles().length == 0 -->
+                <div class="article-preview">Nothing to see here..</div>
+                <!-- /ko -->
+
+                <!-- ko foreach: Articles -->
+                <div class="article-preview">
+                    <div class="article-meta">
+                        <a href="javascript:void (0);" data-bind="click: function(data) { $parent.GoToUser(data)}"><img data-bind="attr:{src: Author.Image}" /></a>
+                        <div class="info">
+                            <a href="javascript:void(0);" class="author" data-bind="text:Author.Username, click: function(data) { $parent.GoToUser(data)}"></a>
+                            <span class="date" data-bind="text: Create"></span>
+                        </div>
+                        <button class="btn btn-sm pull-xs-right" data-bind="click: function(data) { $parent.AddToFavourite(data)}, css:{'btn-primary': Favorited,'btn-outline-primary': Favorited == false }">
+                            <i class="ion-heart"></i> <!--ko text:FavoritesCount--><!--/ko-->
+                        </button>
+                    </div>
+                    <a href="javascript:void(0);" class="preview-link" data-bind="click: function(data) { $parent.GoToArticle(data)}">
+                        <h1 data-bind="text:Title"></h1>
+                        <p data-bind="text:Description"></p>
+                        <span>Read more...</span>
+                    </a>
+                </div>
+                <!-- /ko -->
+
+
+            <ul class="pagination" data-bind="foreach: Pages">
+                <li class="page-item" data-bind="css: { active: Active }">
+                    <a href="javascript:void(0);" class="page-link" data-bind="text: Page, click: function(data) { $parent.GoToPage(data)}"></a>
+                </li>
+            </ul>
+
+
+            </div>
+
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <p>Popular Tags</p>
+
+                    <div class="tag-list" data-bind="foreach : Tags">
+                        <a href="javascript:void(0);" class="tag-pill tag-default" data-bind="text: $data, click: function(data) { $parent.FilterByTag(data)}"></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

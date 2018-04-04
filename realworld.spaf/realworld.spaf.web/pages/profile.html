@@ -1,0 +1,74 @@
+﻿<div class="profile-page" id="profile">
+
+    <div class="user-info">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-12 col-md-10 offset-md-1">
+                    <img data-bind="attr: {src: ProfileModel.Image}" class="user-img" />
+                    <h4 data-bind="text: ProfileModel.Username"></h4>
+                    <p data-bind="text: ProfileModel.Bio"></p>
+
+
+                    <!-- ko if: IsLogged -->
+
+                    <button class="btn btn-sm btn-outline-secondary action-btn" data-bind="click:Follow, if:IsLogged">
+                        <i class="ion-plus-round"></i>
+                        &nbsp;
+                        <!-- ko text: ProfileModel.Following() == true ? 'Unfollow' : 'Follow' --><!-- /ko -->
+
+                        <span data-bind="text: ProfileModel.Username"></span>
+                    </button>
+                    
+                    <!-- /ko -->
+
+                  
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xs-12 col-md-10 offset-md-1">
+                <div class="articles-toggle">
+                    <ul class="nav nav-pills outline-active">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="javascript:void(0);" data-bind="click:ShowArticles, css: {active: ActiveTabIndex() == 0}">My Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0);" data-bind="click:ShowFavourites, css: {active: ActiveTabIndex() == 1}">Favorited Articles</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- ko foreach: ProfileModel.Articles -->
+                <div class="article-preview">
+                    <div class="article-meta">
+                        <a href="javascript:void (0);" data-bind="click: function(data) { $parent.GoToUser(data)}"><img data-bind="attr:{src: Author.Image}" /></a>
+                        <div class="info">
+                            <a href="javascript:void(0);" class="author" data-bind="text:Author.Username, click: function(data) { $parent.GoToUser(data)}"></a>
+                            <span class="date" data-bind="text: Create"></span>
+                        </div>
+                        <button class="btn btn-sm pull-xs-right" data-bind="click: function(data) { $parent.AddToFavourite(data)}, css:{'btn-primary': Favorited,'btn-outline-primary': Favorited == false }">
+                            <i class="ion-heart"></i> <!--ko text:FavoritesCount--><!--/ko-->
+                        </button>
+                    </div>
+                    <a href="javascript:void(0);" class="preview-link" data-bind="click: function(data) { $parent.GoToArticle(data)}">
+                        <h1 data-bind="text:Title"></h1>
+                        <p data-bind="text:Description"></p>
+                        <span>Read more...</span>
+                    </a>
+                </div>
+                <!-- /ko -->
+
+               
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

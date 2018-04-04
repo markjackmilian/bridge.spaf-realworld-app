@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Conduit</title>
+    <!-- Import Ionicon icons & Google Fonts our Bootstrap theme relies on -->
+    <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Titillium+Web:700|Source+Serif+Pro:400,700|Merriweather+Sans:400,700|Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+    <!-- Import the custom Bootstrap 4 theme from our hosted CDN -->
+    <link rel="stylesheet" href="//demo.productionready.io/main.css">
+</head>
+<body>
+
+<nav class="navbar navbar-light">
+    <div class="container">
+        <a class="navbar-brand" href="spaf:home">conduit</a>
+        <ul class="nav navbar-nav pull-xs-right">
+            <li class="nav-item">
+                <!-- Add "active" class when you're on that page" -->
+                <a class="nav-link" href="spaf:home" data-bind="css: {active: ActualPageId() == 'home'}">Home</a>
+            </li>
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link" href="">-->
+                    <!--<i class="ion-compose"></i>&nbsp;New Post-->
+                <!--</a>-->
+            <!--</li>-->
+            
+            <li class="nav-item" data-bind="visible: IsLogged, css: {active: ActualPageId() == 'editArticle'">
+                <a class="nav-link" href="spaf:editArticle">
+                    <i class="ion-compose"></i>New Post
+                </a>
+            </li>
+            
+            <li class="nav-item" data-bind="visible: IsLogged, css: {active: ActualPageId() == 'settings'">
+                <a class="nav-link" href="spaf:settings">
+                    <i class="ion-gear-a"></i>&nbsp;Settings
+                </a>
+            </li>
+            
+            <li class="nav-item" data-bind="visible: IsLogged, css: {active: ActualPageId() == 'profile'">
+                <a class="nav-link" href="spaf:profile">Profile</a>
+            </li>
+            <li class="nav-item" data-bind="visible: IsLogged() == false, css: {active: ActualPageId() == 'login'}">
+                <a class="nav-link" href="spaf:login">Sign in</a>
+            </li>
+            <li class="nav-item" data-bind="visible: IsLogged() == false, css: {active: ActualPageId() == 'register'">
+                <a class="nav-link" href="spaf:register">Sign up</a>
+            </li>
+
+            
+        </ul>
+    </div>
+</nav>
+
+
+<div id="pageBody"></div>
+
+
+
+<footer>
+    <div class="container">
+        <a href="/" class="logo-font">conduit</a>
+        <span class="attribution">
+            An interactive learning project from <a href="https://thinkster.io">Thinkster</a>. Code &amp; design licensed under MIT.
+        </span>
+    </div>
+</footer>
+
+<a href="https://github.com/markjackmilian/bridge.spaf-realworld-app" target="_blank" style="position:fixed;bottom:0;width:100%;background:linear-gradient(#485563, #29323c);text-align: center;padding:15px;box-shadow:0 5px 5px 5px rgba(0,0,0,0.4);z-index:999;color:#fff;font-size:1.5rem;display:block"><i class="ion-social-github"></i>&nbsp;&nbsp;Star & Fork on GitHub</a>
+
+    
+    
+<script src="Scripts/knockout-3.4.2.js"></script>
+
+<!--<script src="bridge/bridge.min.js"></script>-->
+<!--<script src="bridge/bridge.ioc.min.js"></script>-->
+<!--<script src="bridge/Bridge.Messenger.min.js"></script>-->
+<!--<script src="bridge/Bridge.Messenger.meta.min.js"></script>-->
+<!--<script src="bridge/newtonsoft.json.min.js"></script>-->
+<!--<script src="bridge/jquery-2.2.4.min.js"></script>-->
+<!--<script src="bridge/Bridge.Navigation.min.js"></script>-->
+<!--<script src="bridge/Bridge.Navigation.meta.min.js"></script>-->
+<!--<script src="bridge/Bridge.Spaf.min.js"></script>-->
+<!--<script src="bridge/realworld.spaf.min.js"></script>-->
+<!--<script src="bridge/realworld.spaf.meta.min.js"></script>-->
+
+<!--DEBUG-->
+<script src="bridge/bridge.js"></script>
+<script src="bridge/bridge.console.js"></script>
+<script src="bridge/bridge.meta.js"></script>
+<script src="bridge/bridge.ioc.js"></script>
+<script src="bridge/bridge.ioc.meta.js"></script>
+<script src="bridge/Bridge.Messenger.js"></script>
+<script src="bridge/Bridge.Messenger.meta.js"></script>
+<script src="bridge/newtonsoft.json.js"></script>
+<script src="bridge/jquery-2.2.4.js"></script>
+<script src="bridge/Bridge.Navigation.js"></script>
+<script src="bridge/Bridge.Navigation.meta.js"></script>
+<script src="bridge/Bridge.Spaf.js"></script>
+<script src="bridge/Bridge.Spaf.meta.js"></script>
+<script src="bridge/realworld.spaf.js"></script>
+<script src="bridge/realworld.spaf.meta.js"></script>
+<!--DEBUG-->
+
+</body>
+</html>

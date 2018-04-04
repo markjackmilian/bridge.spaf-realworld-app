@@ -1,0 +1,34 @@
+﻿<div class="settings-page" id="settings">
+    <div class="container page">
+        <div class="row">
+
+            <div class="col-md-6 offset-md-3 col-xs-12">
+                <h1 class="text-xs-center">Your Settings</h1>
+
+                <div>
+                    <fieldset>
+                        <fieldset class="form-group">
+                            <input class="form-control" type="text" placeholder="URL of profile picture" data-bind="textInput:ImageUri">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input class="form-control form-control-lg" type="text" placeholder="Your Name" data-bind="textInput:Username">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <textarea class="form-control form-control-lg" rows="8" placeholder="Short bio about you" data-bind="textInput:Biography"></textarea>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input class="form-control form-control-lg" type="text" placeholder="Email" data-bind="textInput:Email">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input class="form-control form-control-lg" type="password" placeholder="Password" data-bind="textInput:NewPassword">
+                        </fieldset>
+                        <button class="btn btn-lg btn-primary pull-xs-right" data-bind="click:UpdateSettings" >
+                            Update Settings
+                        </button>
+                    </fieldset>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
