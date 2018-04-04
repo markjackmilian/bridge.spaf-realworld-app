@@ -18,6 +18,11 @@ namespace Bridge.Spaf
 
         public static async void Main()
         {
+            #if TEST
+            Console.WriteLine("Test Mode");
+            return;
+            #endif
+            
             #if !DEBUG
             NavigationUtility.VirtualDirectory = "realworld.spaf"; //  virtual dit for release environment
             #endif

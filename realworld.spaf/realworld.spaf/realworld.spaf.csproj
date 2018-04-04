@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
     <NoStdLib>true</NoStdLib>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TEST</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bridge, Version=16.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Bridge.Core.16.8.2\lib\net40\Bridge.dll</HintPath>

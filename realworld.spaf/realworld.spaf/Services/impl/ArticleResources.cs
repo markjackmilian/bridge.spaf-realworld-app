@@ -9,7 +9,7 @@ using realworld.spaf.Models.Response;
 
 namespace realworld.spaf.Services.impl
 {
-    class ArticleResources : AuthorizedResourceBase, IArticleResources
+    public class ArticleResources : AuthorizedResourceBase, IArticleResources
     {
         private readonly ISettings _settings;
 
