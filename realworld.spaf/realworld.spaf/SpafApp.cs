@@ -19,7 +19,6 @@ namespace Bridge.Spaf
         public static async void Main()
         {
             #if TEST
-            Console.WriteLine("Test Mode");
             return;
             #endif
             
