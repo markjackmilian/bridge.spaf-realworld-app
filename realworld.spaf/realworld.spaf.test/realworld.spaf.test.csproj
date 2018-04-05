@@ -44,10 +44,21 @@
     <Reference Include="Bridge.Html5, Version=16.8.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Bridge.Html5.16.8.2\lib\net40\Bridge.Html5.dll</HintPath>
     </Reference>
+    <Reference Include="Bridge.Messenger, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Bridge.Messenger.1.0.0\lib\net45\Bridge.Messenger.dll</HintPath>
+    </Reference>
+    <Reference Include="Bridge.Navigation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Bridge.Navigation.1.1.4\lib\net45\Bridge.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Bridge.Spaf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Bridge.Spaf.1.0.0\lib\net45\Bridge.Spaf.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArticleResourceTest.cs" />
+    <Compile Include="Fakes.cs" />
+    <Compile Include="LoginViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bridge.json" />
