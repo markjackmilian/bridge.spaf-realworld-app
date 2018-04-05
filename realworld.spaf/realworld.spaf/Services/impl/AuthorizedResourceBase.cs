@@ -4,7 +4,7 @@ using Bridge.jQuery2;
 
 namespace realworld.spaf.Services.impl
 {
-    abstract class AuthorizedResourceBase : ResourceBase
+    public abstract class AuthorizedResourceBase : ResourceBase
     {
         protected readonly IUserService UserService;
 
