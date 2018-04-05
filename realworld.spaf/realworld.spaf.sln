@@ -7,20 +7,33 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "realworld.spaf", "realworld
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "realworld.spaf.web", "realworld.spaf.web\realworld.spaf.web.csproj", "{353803A1-9DB8-402D-9F7E-1EAC7AAC8A2F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "realworld.spaf.test", "realworld.spaf.test\realworld.spaf.test.csproj", "{730A8102-CEA7-436A-9E7C-1CF2D4360A13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Test|Any CPU = Test|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E545A9B9-5C17-429C-9ADB-A1215562DAA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E545A9B9-5C17-429C-9ADB-A1215562DAA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E545A9B9-5C17-429C-9ADB-A1215562DAA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E545A9B9-5C17-429C-9ADB-A1215562DAA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E545A9B9-5C17-429C-9ADB-A1215562DAA1}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{E545A9B9-5C17-429C-9ADB-A1215562DAA1}.Test|Any CPU.Build.0 = Test|Any CPU
 		{353803A1-9DB8-402D-9F7E-1EAC7AAC8A2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{353803A1-9DB8-402D-9F7E-1EAC7AAC8A2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{353803A1-9DB8-402D-9F7E-1EAC7AAC8A2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{353803A1-9DB8-402D-9F7E-1EAC7AAC8A2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{353803A1-9DB8-402D-9F7E-1EAC7AAC8A2F}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{353803A1-9DB8-402D-9F7E-1EAC7AAC8A2F}.Test|Any CPU.Build.0 = Test|Any CPU
+		{730A8102-CEA7-436A-9E7C-1CF2D4360A13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{730A8102-CEA7-436A-9E7C-1CF2D4360A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{730A8102-CEA7-436A-9E7C-1CF2D4360A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{730A8102-CEA7-436A-9E7C-1CF2D4360A13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{730A8102-CEA7-436A-9E7C-1CF2D4360A13}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{730A8102-CEA7-436A-9E7C-1CF2D4360A13}.Test|Any CPU.Build.0 = Test|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

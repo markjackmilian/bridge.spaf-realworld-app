@@ -8,7 +8,7 @@ using realworld.spaf.Models.Request;
 
 namespace realworld.spaf.Services.impl
 {
-    class UserService : IUserService
+    public class UserService : IUserService
     {
         private readonly IUserResources _userResources;
         private readonly IMessenger _messenger;

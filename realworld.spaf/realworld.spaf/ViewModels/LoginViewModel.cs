@@ -9,7 +9,7 @@ using static Retyped.knockout;
 
 namespace realworld.spaf.ViewModels
 {
-    class LoginViewModel : LoadableViewModel
+    public class LoginViewModel : LoadableViewModel
     {
         private readonly INavigator _navigator;
         private readonly IUserService _userService;
@@ -32,11 +32,11 @@ namespace realworld.spaf.ViewModels
         }
 
 
-        public void Login()
+        public Task Login()
         {
             this.IsBusy.Self(true);
             this.Errors.removeAll();
-            this._userService.Login(this.Email.Self(), this.Password.Self()).ContinueWith(c =>
+            return this._userService.Login(this.Email.Self(), this.Password.Self()).ContinueWith(c =>
             {
                 this.IsBusy.Self(false);
 

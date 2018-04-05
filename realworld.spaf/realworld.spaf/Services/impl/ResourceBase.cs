@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace realworld.spaf.Services.impl
 {
-    abstract class ResourceBase
+    public abstract class ResourceBase
     {
         /// <summary>
         /// Generic Awaitable ajax call
