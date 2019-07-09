@@ -23,7 +23,7 @@ namespace Bridge.Spaf
             #endif
             
             #if !DEBUG
-            NavigationUtility.VirtualDirectory = "realworld.spaf"; //  virtual dit for release environment
+            NavigationUtility.VirtualDirectory = "realworld.spaf"; //  virtual dir for release environment
             #endif
 
             Container = new BridgeIoc();
@@ -38,6 +38,7 @@ namespace Bridge.Spaf
         {
             // navigator
             Container.RegisterSingleInstance<INavigator, BridgeNavigatorWithRouting>();
+            Container.RegisterSingleInstance<IBrowserHistoryManager, QueryParameterNavigationHistory>();
             Container.Register<INavigatorConfigurator, CustomRoutesConfig>(); 
 
             // messenger
