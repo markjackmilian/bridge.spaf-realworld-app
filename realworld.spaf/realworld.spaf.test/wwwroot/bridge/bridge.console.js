@@ -1,7 +1,7 @@
 /**
- * @version   : 16.8.2 - Bridge.NET
+ * @version   : 17.9.0 - Bridge.NET
  * @author    : Object.NET, Inc. http://bridge.net/
- * @copyright : Copyright 2008-2018 Object.NET, Inc. http://object.net/
+ * @copyright : Copyright 2008-2019 Object.NET, Inc. http://object.net/
  * @license   : See license.txt and https://github.com/bridgedotnet/Bridge/blob/master/LICENSE.md
  */
 Bridge.assembly("Bridge", function ($asm, globals) {
@@ -85,13 +85,15 @@ Bridge.assembly("Bridge", function ($asm, globals) {
                     }
                 },
                 logBase: function (value, newLine, messageType) {
+                    var $t;
                     if (newLine === void 0) { newLine = true; }
                     if (messageType === void 0) { messageType = 0; }
                     var self = Bridge.Console.instance;
                     var v = "";
 
                     if (value != null) {
-                        v = (value.toString == { }.toString) ? JSON.stringify(value, null, 2) : value.toString();
+                        var hasToString = value.ToString !== undefined;
+                        v = (value.toString == { }.toString && !hasToString) ? JSON.stringify(value, null, 2) : hasToString ? value.ToString() : value.toString();
                     }
 
                     if (self.bufferedOutput != null) {
@@ -112,7 +114,7 @@ Bridge.assembly("Bridge", function ($asm, globals) {
                         self.currentMessageElement = m;
                     } else {
                         var m1 = Bridge.unbox(self.currentMessageElement);
-                        m1.lastChild.innerHTML = (m1.lastChild.innerHTML || "") + (v || "");
+                        ($t = m1.lastChild).innerHTML = ($t.innerHTML || "") + (v || "");
                     }
 
                     self.isNewLine = newLine;
@@ -219,44 +221,41 @@ Bridge.assembly("Bridge", function ($asm, globals) {
                 if (reinit === void 0) { reinit = false; }
                 this.hidden = false;
 
-                var consoleWrapStyles = Bridge.fn.bind(this, $asm.$.Bridge.Console.f1)(new (System.Collections.Generic.Dictionary$2(System.String,System.String))());
+                var consoleWrapStyles = Bridge.fn.bind(this, $asm.$.Bridge.Console.f1)(new (System.Collections.Generic.Dictionary$2(System.String,System.String)).ctor());
 
-                var consoleHeaderStyles = $asm.$.Bridge.Console.f2(new (System.Collections.Generic.Dictionary$2(System.String,System.String))());
+                var consoleHeaderStyles = $asm.$.Bridge.Console.f2(new (System.Collections.Generic.Dictionary$2(System.String,System.String)).ctor());
 
-                var consoleBodyStyles = $asm.$.Bridge.Console.f3(new (System.Collections.Generic.Dictionary$2(System.String,System.String))());
+                var consoleBodyStyles = $asm.$.Bridge.Console.f3(new (System.Collections.Generic.Dictionary$2(System.String,System.String)).ctor());
 
-                // Bridge Icon
                 this.bridgeIcon = this.bridgeIcon || document.createElementNS(this.svgNS, "svg");
 
-                var items = Bridge.fn.bind(this, $asm.$.Bridge.Console.f4)(new (System.Collections.Generic.Dictionary$2(System.String,System.String))());
+                var items = Bridge.fn.bind(this, $asm.$.Bridge.Console.f4)(new (System.Collections.Generic.Dictionary$2(System.String,System.String)).ctor());
 
                 this.setAttributes(this.bridgeIcon, items);
 
                 this.bridgeIconPath = this.bridgeIconPath || document.createElementNS(this.svgNS, "path");
 
-                var items2 = new (System.Collections.Generic.Dictionary$2(System.String,System.String))();
-                items2.set("d", "M19 14.4h2.2V9.6L19 7.1v7.3zm4.3-2.5v2.5h2.2l-2.2-2.5zm-8.5 2.5H17V4.8l-2.2-2.5v12.1zM0 14.4h3l7.5-8.5v8.5h2.2V0L0 14.4z");
-                items2.set("fill", "#555");
+                var items2 = new (System.Collections.Generic.Dictionary$2(System.String,System.String)).ctor();
+                items2.setItem("d", "M19 14.4h2.2V9.6L19 7.1v7.3zm4.3-2.5v2.5h2.2l-2.2-2.5zm-8.5 2.5H17V4.8l-2.2-2.5v12.1zM0 14.4h3l7.5-8.5v8.5h2.2V0L0 14.4z");
+                items2.setItem("fill", "#555");
 
                 this.setAttributes(this.bridgeIconPath, items2);
 
-                // Bridge Console Label
                 this.bridgeConsoleLabel = this.bridgeConsoleLabel || document.createElement("span");
                 this.bridgeConsoleLabel.innerHTML = "Bridge Console";
 
-                // Close Button
                 this.closeBtn = this.closeBtn || document.createElement("span");
                 this.closeBtn.setAttribute("style", "position: relative;display: inline-block;float: right;cursor: pointer");
 
                 this.closeIcon = this.closeIcon || document.createElementNS(this.svgNS, "svg");
 
-                var items3 = Bridge.fn.bind(this, $asm.$.Bridge.Console.f5)(new (System.Collections.Generic.Dictionary$2(System.String,System.String))());
+                var items3 = Bridge.fn.bind(this, $asm.$.Bridge.Console.f5)(new (System.Collections.Generic.Dictionary$2(System.String,System.String)).ctor());
 
                 this.setAttributes(this.closeIcon, items3);
 
                 this.closeIconPath = this.closeIconPath || document.createElementNS(this.svgNS, "path");
 
-                var items4 = $asm.$.Bridge.Console.f6(new (System.Collections.Generic.Dictionary$2(System.String,System.String))());
+                var items4 = $asm.$.Bridge.Console.f6(new (System.Collections.Generic.Dictionary$2(System.String,System.String)).ctor());
 
                 this.setAttributes(this.closeIconPath, items4);
 
@@ -265,39 +264,33 @@ Bridge.assembly("Bridge", function ($asm, globals) {
 
                 this.tooltip.setAttribute("style", "position: absolute;right: 30px;top: -6px;white-space: nowrap;padding: 7px;border-radius: 3px;background-color: rgba(0, 0, 0, 0.75);color: #eee;text-align: center;visibility: hidden;opacity: 0;-webkit-transition: all 0.25s ease-in-out;transition: all 0.25s ease-in-out;z-index: 1;");
 
-                // Styles and other stuff based on position
-                // Force to horizontal for now
                 Bridge.Console.position = "horizontal";
 
                 if (Bridge.referenceEquals(Bridge.Console.position, "horizontal")) {
                     this.wrapBodyContent();
 
-                    consoleWrapStyles.set("right", "0");
-                    consoleHeaderStyles.set("border-top", "1px solid #a3a3a3");
-                    consoleBodyStyles.set("height", this.consoleHeight);
+                    consoleWrapStyles.setItem("right", "0");
+                    consoleHeaderStyles.setItem("border-top", "1px solid #a3a3a3");
+                    consoleBodyStyles.setItem("height", this.consoleHeight);
                 } else if (Bridge.referenceEquals(Bridge.Console.position, "vertical")) {
                     var consoleWidth = "400px";
                     document.body.style.marginLeft = consoleWidth;
 
-                    consoleWrapStyles.set("top", "0");
-                    consoleWrapStyles.set("width", consoleWidth);
-                    consoleWrapStyles.set("border-right", "1px solid #a3a3a3");
-                    consoleBodyStyles.set("height", "100%");
+                    consoleWrapStyles.setItem("top", "0");
+                    consoleWrapStyles.setItem("width", consoleWidth);
+                    consoleWrapStyles.setItem("border-right", "1px solid #a3a3a3");
+                    consoleBodyStyles.setItem("height", "100%");
                 }
 
-                // Console wrapper
                 this.consoleWrap = this.consoleWrap || document.createElement("div");
                 this.consoleWrap.setAttribute("style", this.obj2Css(consoleWrapStyles));
 
-                // Console Header
                 this.consoleHeader = this.consoleHeader || document.createElement("div");
                 this.consoleHeader.setAttribute("style", this.obj2Css(consoleHeaderStyles));
 
-                // Console Body Wrapper
                 this.consoleBody = this.consoleBody || document.createElement("div");
                 this.consoleBody.setAttribute("style", this.obj2Css(consoleBodyStyles));
 
-                // Console Messages Unordered List Element
                 this.consoleMessages = this.consoleMessages || document.createElement("ul");
                 var cm = this.consoleMessages;
                 cm.id = Bridge.Console.CONSOLE_MESSAGES_ID;
@@ -310,25 +303,19 @@ Bridge.assembly("Bridge", function ($asm, globals) {
                     this.closeBtn.appendChild(this.closeIcon);
                     this.closeBtn.appendChild(this.tooltip);
 
-                    // Add child elements into console header
                     this.consoleHeader.appendChild(this.bridgeIcon);
                     this.consoleHeader.appendChild(this.bridgeConsoleLabel);
                     this.consoleHeader.appendChild(this.closeBtn);
 
-                    // Add messages to console body
                     this.consoleBody.appendChild(cm);
 
-                    // Add console header and console body into console wrapper
                     this.consoleWrap.appendChild(this.consoleHeader);
                     this.consoleWrap.appendChild(this.consoleBody);
 
-                    // Finally add console to body
                     document.body.appendChild(this.consoleWrap);
 
-                    // Close console
                     this.closeBtn.addEventListener("click", Bridge.fn.cacheBind(this, this.close));
 
-                    // Show/hide Tooltip
                     this.closeBtn.addEventListener("mouseover", Bridge.fn.cacheBind(this, this.showTooltip));
                     this.closeBtn.addEventListener("mouseout", Bridge.fn.cacheBind(this, this.hideTooltip));
                 }
@@ -360,7 +347,6 @@ Bridge.assembly("Bridge", function ($asm, globals) {
                     return;
                 }
 
-                // get body margin and padding for proper alignment of scroll if a body margin/padding is used.
                 var bodyStyle = document.defaultView.getComputedStyle(document.body, null);
 
                 var bodyPaddingTop = bodyStyle.paddingTop;
@@ -402,7 +388,7 @@ Bridge.assembly("Bridge", function ($asm, globals) {
 
                 var messageIcon = document.createElementNS(this.svgNS, "svg");
 
-                var items5 = Bridge.fn.bind(this, $asm.$.Bridge.Console.f7)(new (System.Collections.Generic.Dictionary$2(System.String,System.String))());
+                var items5 = Bridge.fn.bind(this, $asm.$.Bridge.Console.f7)(new (System.Collections.Generic.Dictionary$2(System.String,System.String)).ctor());
 
                 this.setAttributes(messageIcon, items5);
 
@@ -416,10 +402,10 @@ Bridge.assembly("Bridge", function ($asm, globals) {
 
                 var messageIconPath = document.createElementNS(this.svgNS, "path");
 
-                var items6 = new (System.Collections.Generic.Dictionary$2(System.String,System.String))();
+                var items6 = new (System.Collections.Generic.Dictionary$2(System.String,System.String)).ctor();
 
-                items6.set("d", "M3.8 3.5L.7 6.6s-.1.1-.2.1-.1 0-.2-.1l-.2-.3C0 6.2 0 6.2 0 6.1c0 0 0-.1.1-.1l2.6-2.6L.1.7C0 .7 0 .6 0 .6 0 .5 0 .5.1.4L.4.1c0-.1.1-.1.2-.1s.1 0 .2.1l3.1 3.1s.1.1.1.2-.1.1-.2.1z");
-                items6.set("fill", color);
+                items6.setItem("d", "M3.8 3.5L.7 6.6s-.1.1-.2.1-.1 0-.2-.1l-.2-.3C0 6.2 0 6.2 0 6.1c0 0 0-.1.1-.1l2.6-2.6L.1.7C0 .7 0 .6 0 .6 0 .5 0 .5.1.4L.4.1c0-.1.1-.1.2-.1s.1 0 .2.1l3.1 3.1s.1.1.1.2-.1.1-.2.1z");
+                items6.setItem("fill", color);
 
                 this.setAttributes(messageIconPath, items6);
 
@@ -444,9 +430,10 @@ Bridge.assembly("Bridge", function ($asm, globals) {
                     }
                 } finally {
                     if (Bridge.is($t, System.IDisposable)) {
-                        $t.System$IDisposable$dispose();
+                        $t.System$IDisposable$Dispose();
                     }
-                }},
+                }
+            },
             obj2Css: function (obj) {
                 var $t;
                 var str = "";
@@ -459,9 +446,10 @@ Bridge.assembly("Bridge", function ($asm, globals) {
                     }
                 } finally {
                     if (Bridge.is($t, System.IDisposable)) {
-                        $t.System$IDisposable$dispose();
+                        $t.System$IDisposable$Dispose();
                     }
                 }
+
                 return str;
             }
         }
