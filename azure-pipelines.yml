@@ -32,6 +32,6 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(Build.StagingDirectory)/realworld.spaf/realworld.spaf.web/obj/Release/Package/PackageTmp/'
     ArtifactName: 'drop'
     publishLocation: 'Container'
