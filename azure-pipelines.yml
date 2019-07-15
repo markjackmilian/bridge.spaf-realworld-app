@@ -30,5 +30,5 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)/realworld.spaf.web/pages'
+    targetPath: '$(Build.Repository.LocalPath)/realworld.spaf.web/pages'
     artifact: 'drop'
