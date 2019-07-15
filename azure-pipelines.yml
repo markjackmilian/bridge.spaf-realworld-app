@@ -28,10 +28,8 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- powershell: gci env:* | sort-object name | Format-Table -AutoSize | Out-File $env:BUILD_ARTIFACTSTAGINGDIRECTORY/environment-variables.txt
-
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.StagingDirectory)/realworld.spaf/realworld.spaf.web/obj/Release/Package/PackageTmp/'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
